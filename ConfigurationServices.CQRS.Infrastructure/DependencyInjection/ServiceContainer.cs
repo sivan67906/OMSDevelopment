@@ -3,6 +3,7 @@ using ConfigurationServices.CQRS.Domain.Interfaces;
 using ConfigurationServices.CQRS.Infrastructure.Persistence;
 using ConfigurationServices.CQRS.Infrastructure.Repositories;
 using ConfigurationServices.CQRS.Infrastructure.Services;
+using ConfigurationServices.CQRS.Infrastucture.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +23,8 @@ public static class ServiceContainer
         services.AddScoped<ILeadAgentService, LeadAgentService>();
         services.AddScoped<ILeadCategoryService, LeadCategoryservice>();
         services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<ILeadSourceService, LeadSourceService>();
+        services.AddScoped<ILeadStatusService, LeadStatusService>();
 
         return services;
     }
