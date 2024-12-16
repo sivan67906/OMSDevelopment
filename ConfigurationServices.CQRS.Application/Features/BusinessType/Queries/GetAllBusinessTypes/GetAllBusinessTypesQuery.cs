@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.BusinessTypes.Queries.GetAllBusinessTypes;
 
-public class GetAllBusinessTypesQuery : IRequest<IEnumerable<BusinessTypeDto>>
+public class GetAllBusinessTypesQuery : IRequest<IEnumerable<BusinessTypeDTO>>
 {
 }
 

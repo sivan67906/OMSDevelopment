@@ -4,6 +4,8 @@ namespace ConfigurationServices.CQRS.Application.Features.Countries.Commands.Upd
 
 public class UpdateCountryCommand : IRequest
 {
+    public int Id { get; set; }
+    public string Name { get; set; }
 }
 
 

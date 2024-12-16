@@ -4,18 +4,18 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.SearchConsumers.Queries.GetSearchConsumersByDate;
 
-internal class GetSearchConsumersByDateQueryHandler : IRequestHandler<GetSearchConsumersByDateQuery, IEnumerable<ConsumerDto>>
+internal class GetSearchConsumersByDateQueryHandler : IRequestHandler<GetSearchConsumersByDateQuery, IEnumerable<ConsumerDTO>>
 {
     private readonly IConsumerService _consumerService;
 
     public GetSearchConsumersByDateQueryHandler(IConsumerService consumerService) =>
         _consumerService = consumerService;
 
-    public async Task<IEnumerable<ConsumerDto>> Handle(GetSearchConsumersByDateQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ConsumerDTO>> Handle(GetSearchConsumersByDateQuery request, CancellationToken cancellationToken)
     {
         var consumers = await _consumerService.SearchConsumersByDateAsync(request.SearchDate);
         if (consumers == null) return null;
-        var consumerList = consumers.Select(x => new ConsumerDto
+        var consumerList = consumers.Select(x => new ConsumerDTO
         {
             Id = x.Id,
             FirstName = x.FirstName,

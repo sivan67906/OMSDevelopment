@@ -1,23 +1,22 @@
-using ConfigurationServices.CQRS.Application.DTOs;
 using ConfigurationServices.CQRS.Domain.Entities;
 using ConfigurationServices.CQRS.Domain.Interfaces;
 using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Countries.Queries.GetAllCountries;
 
-internal class GetAllCountriesQueryHandler : IRequestHandler<GetAllCountriesQuery, IEnumerable<CountryDto>>
+internal class GetAllCountriesQueryHandler : IRequestHandler<GetAllCountriesQuery, IEnumerable<CountryDTO>>
 {
-    private readonly IGenericRepository<CountryDto> _countryRepository;
+    private readonly IGenericRepository<CountryDTO> _countryRepository;
 
     public GetAllCountriesQueryHandler(
-        IGenericRepository<CountryDto> countryRepository) =>
+        IGenericRepository<CountryDTO> countryRepository) =>
         _countryRepository = countryRepository;
 
-    public async Task<IEnumerable<CountryDto>> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CountryDTO>> Handle(GetAllCountriesQuery request, CancellationToken cancellationToken)
     {
         var companies = await _countryRepository.GetAllAsync();
 
-        var countryList = companies.Select(x => new CountryDto
+        var countryList = companies.Select(x => new CountryDTO
         {
             Id = x.Id,
             Name = x.Name,

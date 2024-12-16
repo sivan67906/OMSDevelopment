@@ -4,18 +4,18 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Consumers.Queries.GetConsumerByName;
 
-internal class GetConsumerByNameQueryHandler : IRequestHandler<GetConsumerByNameQuery, ConsumerDto>
+internal class GetConsumerByNameQueryHandler : IRequestHandler<GetConsumerByNameQuery, ConsumerDTO>
 {
     private readonly IConsumerService _consumerService;
 
     public GetConsumerByNameQueryHandler(IConsumerService consumerService) =>
         _consumerService = consumerService;
 
-    public async Task<ConsumerDto> Handle(GetConsumerByNameQuery request, CancellationToken cancellationToken)
+    public async Task<ConsumerDTO> Handle(GetConsumerByNameQuery request, CancellationToken cancellationToken)
     {
         var consumer = await _consumerService.GetByConsumerNameAsync(request.ConsumerName);
         if (consumer == null) return null;
-        return new ConsumerDto
+        return new ConsumerDTO
         {
             Id = consumer.Id,
             FirstName = consumer.FirstName,

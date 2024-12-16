@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Designations.Queries.GetAllDesignations;
 
-public class GetAllDesignationsQuery : IRequest<IEnumerable<DesignationDto>>
+public class GetAllDesignationsQuery : IRequest<IEnumerable<DesignationDTO>>
 {
 }
 

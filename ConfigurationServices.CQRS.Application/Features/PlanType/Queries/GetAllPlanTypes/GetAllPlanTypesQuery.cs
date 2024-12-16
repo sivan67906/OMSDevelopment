@@ -3,6 +3,6 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.PlanTypes.Queries.GetAllPlanTypes;
 
-public class GetAllPlanTypesQuery : IRequest<IEnumerable<PlanTypeDto>>
+public class GetAllPlanTypesQuery : IRequest<IEnumerable<PlanTypeDTO>>
 {
 }

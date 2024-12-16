@@ -3,6 +3,6 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Consumers.Queries.GetAllConsumers;
 
-public class GetAllConsumersQuery : IRequest<IEnumerable<ConsumerDto>>
+public class GetAllConsumersQuery : IRequest<IEnumerable<ConsumerDTO>>
 {
 }

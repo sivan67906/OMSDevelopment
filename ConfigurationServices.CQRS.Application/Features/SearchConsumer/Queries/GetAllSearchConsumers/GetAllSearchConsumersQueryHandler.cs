@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.SearchConsumers.Queries.GetAllSearchConsumers;
 
-internal class GetAllSearchConsumersQueryHandler : IRequestHandler<GetAllSearchConsumersQuery, IEnumerable<ConsumerDto>>
+internal class GetAllSearchConsumersQueryHandler : IRequestHandler<GetAllSearchConsumersQuery, IEnumerable<ConsumerDTO>>
 {
     private readonly IGenericRepository<Consumer> _consumerRepository;
 
@@ -13,11 +13,11 @@ internal class GetAllSearchConsumersQueryHandler : IRequestHandler<GetAllSearchC
         IGenericRepository<Consumer> consumerRepository) =>
         _consumerRepository = consumerRepository;
 
-    public async Task<IEnumerable<ConsumerDto>> Handle(GetAllSearchConsumersQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ConsumerDTO>> Handle(GetAllSearchConsumersQuery request, CancellationToken cancellationToken)
     {
         var consumer = await _consumerRepository.GetAllAsync();
 
-        var consumers = consumer.Select(x => new ConsumerDto
+        var consumers = consumer.Select(x => new ConsumerDTO
         {
             Id = x.Id,
             FirstName = x.FirstName,

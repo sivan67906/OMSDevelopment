@@ -3,7 +3,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Addresses.Queries.GetAllAddresses;
 
-public class GetAllAddressesQuery : IRequest<IEnumerable<AddressDto>>
+public class GetAllAddressesQuery : IRequest<IEnumerable<AddressDTO>>
 {
 }
 

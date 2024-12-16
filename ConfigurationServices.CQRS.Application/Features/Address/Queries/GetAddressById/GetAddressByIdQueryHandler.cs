@@ -5,19 +5,19 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Addresses.Queries.GetAddressById;
 
-internal class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, AddressDto>
+internal class GetAddressByIdQueryHandler : IRequestHandler<GetAddressByIdQuery, AddressDTO>
 {
-    private readonly IGenericRepository<AddressDto> _addressRepository;
+    private readonly IGenericRepository<AddressDTO> _addressRepository;
 
     public GetAddressByIdQueryHandler(
-        IGenericRepository<AddressDto> addressRepository) =>
+        IGenericRepository<AddressDTO> addressRepository) =>
         _addressRepository = addressRepository;
 
-    public async Task<AddressDto> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
+    public async Task<AddressDTO> Handle(GetAddressByIdQuery request, CancellationToken cancellationToken)
     {
         var address = await _addressRepository.GetByIdAsync(request.Id);
         if (address == null) return null;
-        return new AddressDto
+        return new AddressDTO
         {
         };
     }

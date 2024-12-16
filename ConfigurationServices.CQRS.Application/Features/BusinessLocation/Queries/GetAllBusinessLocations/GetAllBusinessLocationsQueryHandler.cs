@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.BusinessLocations.Queries.GetAllBusinessLocations;
 
-internal class GetAllBusinessLocationsQueryHandler : IRequestHandler<GetAllBusinessLocationsQuery, IEnumerable<BusinessLocationDto>>
+internal class GetAllBusinessLocationsQueryHandler : IRequestHandler<GetAllBusinessLocationsQuery, IEnumerable<BusinessLocationDTO>>
 {
     private readonly IGenericRepository<BusinessLocation> _businessLocationRepository;
 
@@ -13,11 +13,11 @@ internal class GetAllBusinessLocationsQueryHandler : IRequestHandler<GetAllBusin
         IGenericRepository<BusinessLocation> businessLocationRepository) =>
         _businessLocationRepository = businessLocationRepository;
 
-    public async Task<IEnumerable<BusinessLocationDto>> Handle(GetAllBusinessLocationsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<BusinessLocationDTO>> Handle(GetAllBusinessLocationsQuery request, CancellationToken cancellationToken)
     {
         var companies = await _businessLocationRepository.GetAllAsync();
 
-        var businessLocationList = companies.Select(x => new BusinessLocationDto
+        var businessLocationList = companies.Select(x => new BusinessLocationDTO
         {
             Id = x.Id,
             Code = x.Code,

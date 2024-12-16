@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Domain.Entities;
 
-public class CountryDto
+public class CountryDTO
 {
     public int Id { get; set; }
     public string? Code { get; set; }

@@ -5,19 +5,19 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Addresses.Queries.GetAllAddresses;
 
-internal class GetAllAddressesQueryHandler : IRequestHandler<GetAllAddressesQuery, IEnumerable<AddressDto>>
+internal class GetAllAddressesQueryHandler : IRequestHandler<GetAllAddressesQuery, IEnumerable<AddressDTO>>
 {
-    private readonly IGenericRepository<AddressDto> _addressRepository;
+    private readonly IGenericRepository<AddressDTO> _addressRepository;
 
     public GetAllAddressesQueryHandler(
-        IGenericRepository<AddressDto> addressRepository) =>
+        IGenericRepository<AddressDTO> addressRepository) =>
         _addressRepository = addressRepository;
 
-    public async Task<IEnumerable<AddressDto>> Handle(GetAllAddressesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<AddressDTO>> Handle(GetAllAddressesQuery request, CancellationToken cancellationToken)
     {
         var companies = await _addressRepository.GetAllAsync();
 
-        var addressList = companies.Select(x => new AddressDto
+        var addressList = companies.Select(x => new AddressDTO
         {
             Id = x.Id,
             Name = x.Name,

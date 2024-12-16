@@ -5,19 +5,19 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Countries.Queries.GetCountryById;
 
-internal class GetCountryByIdQueryHandler : IRequestHandler<GetCountryByIdQuery, CountryDto>
+internal class GetCountryByIdQueryHandler : IRequestHandler<GetCountryByIdQuery, CountryDTO>
 {
-    private readonly IGenericRepository<CountryDto> _countryRepository;
+    private readonly IGenericRepository<CountryDTO> _countryRepository;
 
     public GetCountryByIdQueryHandler(
-        IGenericRepository<CountryDto> countryRepository) =>
+        IGenericRepository<CountryDTO> countryRepository) =>
         _countryRepository = countryRepository;
 
-    public async Task<CountryDto> Handle(GetCountryByIdQuery request, CancellationToken cancellationToken)
+    public async Task<CountryDTO> Handle(GetCountryByIdQuery request, CancellationToken cancellationToken)
     {
         var country = await _countryRepository.GetByIdAsync(request.Id);
         if (country == null) return null;
-        return new CountryDto
+        return new CountryDTO
         {
         };
     }

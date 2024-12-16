@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Designations.Queries.GetAllDesignations;
 
-internal class GetAllDesignationsQueryHandler : IRequestHandler<GetAllDesignationsQuery, IEnumerable<DesignationDto>>
+internal class GetAllDesignationsQueryHandler : IRequestHandler<GetAllDesignationsQuery, IEnumerable<DesignationDTO>>
 {
     private readonly IGenericRepository<Designation> _designationRepository;
 
@@ -13,11 +13,11 @@ internal class GetAllDesignationsQueryHandler : IRequestHandler<GetAllDesignatio
         IGenericRepository<Designation> designationRepository) =>
         _designationRepository = designationRepository;
 
-    public async Task<IEnumerable<DesignationDto>> Handle(GetAllDesignationsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<DesignationDTO>> Handle(GetAllDesignationsQuery request, CancellationToken cancellationToken)
     {
         var designations = await _designationRepository.GetAllAsync();
 
-        var designationList = designations.Select(x => new DesignationDto
+        var designationList = designations.Select(x => new DesignationDTO
         {
             Id = x.Id,
             Code = x.Code,

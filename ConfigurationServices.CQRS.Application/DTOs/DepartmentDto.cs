@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Application.DTOs;
 
-public class DepartmentDto
+public class DepartmentDTO
 {
     public int Id { get; set; }
     public string Code { get; set; } = string.Empty;

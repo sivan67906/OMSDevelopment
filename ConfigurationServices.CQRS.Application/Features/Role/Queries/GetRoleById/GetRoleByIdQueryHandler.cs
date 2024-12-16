@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Roles.Queries.GetRoleById;
 
-internal class GetRoleByIdQueryHandler : IRequestHandler<GetRoleByIdQuery, RoleDto>
+internal class GetRoleByIdQueryHandler : IRequestHandler<GetRoleByIdQuery, RoleDTO>
 {
     private readonly IGenericRepository<Role> _roleRepository;
 
@@ -13,11 +13,11 @@ internal class GetRoleByIdQueryHandler : IRequestHandler<GetRoleByIdQuery, RoleD
         IGenericRepository<Role> roleRepository) =>
         _roleRepository = roleRepository;
 
-    public async Task<RoleDto> Handle(GetRoleByIdQuery request, CancellationToken cancellationToken)
+    public async Task<RoleDTO> Handle(GetRoleByIdQuery request, CancellationToken cancellationToken)
     {
         var role = await _roleRepository.GetByIdAsync(request.Id);
         if (role == null) return null;
-        return new RoleDto
+        return new RoleDTO
         {
             Id = role.Id,
             Code = role.Code,

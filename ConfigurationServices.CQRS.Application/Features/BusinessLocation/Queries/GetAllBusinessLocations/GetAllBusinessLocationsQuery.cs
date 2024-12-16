@@ -3,6 +3,6 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.BusinessLocations.Queries.GetAllBusinessLocations;
 
-public class GetAllBusinessLocationsQuery : IRequest<IEnumerable<BusinessLocationDto>>
+public class GetAllBusinessLocationsQuery : IRequest<IEnumerable<BusinessLocationDTO>>
 {
 }

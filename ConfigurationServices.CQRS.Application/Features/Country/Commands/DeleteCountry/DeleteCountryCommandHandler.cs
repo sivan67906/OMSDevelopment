@@ -6,10 +6,10 @@ namespace ConfigurationServices.CQRS.Application.Features.Countries.Commands.Del
 
 internal class DeleteCountryCommandHandler : IRequestHandler<DeleteCountryCommand>
 {
-    private readonly IGenericRepository<CountryDto> _countryRepository;
+    private readonly IGenericRepository<CountryDTO> _countryRepository;
 
     public DeleteCountryCommandHandler(
-        IGenericRepository<CountryDto> countryRepository) =>
+        IGenericRepository<CountryDTO> countryRepository) =>
         _countryRepository = countryRepository;
     public async Task Handle(DeleteCountryCommand request, CancellationToken cancellationToken)
     {

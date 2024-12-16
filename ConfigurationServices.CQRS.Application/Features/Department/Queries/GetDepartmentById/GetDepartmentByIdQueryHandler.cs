@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Departments.Queries.GetDepartmentById;
 
-internal class GetDepartmentByIdQueryHandler : IRequestHandler<GetDepartmentByIdQuery, DepartmentDto>
+internal class GetDepartmentByIdQueryHandler : IRequestHandler<GetDepartmentByIdQuery, DepartmentDTO>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
 
@@ -13,11 +13,11 @@ internal class GetDepartmentByIdQueryHandler : IRequestHandler<GetDepartmentById
         IGenericRepository<Department> departmentRepository) =>
         _departmentRepository = departmentRepository;
 
-    public async Task<DepartmentDto> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
+    public async Task<DepartmentDTO> Handle(GetDepartmentByIdQuery request, CancellationToken cancellationToken)
     {
         var department = await _departmentRepository.GetByIdAsync(request.Id);
         if (department == null) return null;
-        return new DepartmentDto
+        return new DepartmentDTO
         {
             Id = department.Id,
             Code = department.Code,

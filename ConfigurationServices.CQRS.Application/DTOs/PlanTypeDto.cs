@@ -1,10 +1,10 @@
 ﻿namespace ConfigurationServices.CQRS.Application.DTOs;
 
-public class PlanTypeDto
+public class PlanTypeDTO
 {
     public int Id { get; set; }
     public string Code { get; set; } = string.Empty;
     public string Name { get; set; } = string.Empty;
 
-    //public ConsumerDto? ConsumerSingle { get; set; }
+    //public ConsumerDTO? ConsumerSingle { get; set; }
 }

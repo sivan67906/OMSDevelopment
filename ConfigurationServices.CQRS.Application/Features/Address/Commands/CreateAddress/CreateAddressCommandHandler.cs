@@ -5,11 +5,11 @@ using MediatR;
 namespace ConfigurationServices.CQRS.Application.Features.Addresses.Commands.CreateAddress;
 
 internal class CreateAddressCommandHandler(
-    IGenericRepository<AddressDto> addressRepository) : IRequestHandler<CreateAddressCommand>
+    IGenericRepository<AddressDTO> addressRepository) : IRequestHandler<CreateAddressCommand>
 {
     public async Task Handle(CreateAddressCommand request, CancellationToken cancellationToken)
     {
-        var address = new AddressDto
+        var address = new AddressDTO
         {
 
         };

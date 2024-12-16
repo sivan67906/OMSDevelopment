@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Application.DTOs;
 
-public class ConsumerDto
+public class ConsumerDTO
 {
     public int Id { get; set; }
     public string? FirstName { get; set; }
@@ -16,5 +16,5 @@ public class ConsumerDto
     public DateTime? UpdatedDate { get; set; }
     public bool IsActive { get; set; }
 
-    //public PlanTypeDto? PlanTypeSingle { get; set; }
+    //public PlanTypeDTO? PlanTypeSingle { get; set; }
 }

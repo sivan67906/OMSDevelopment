@@ -6,7 +6,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.x.Queries.GetAllDepartments;
 
-internal class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQuery, IEnumerable<DepartmentDto>>
+internal class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartmentsQuery, IEnumerable<DepartmentDTO>>
 {
     private readonly IGenericRepository<Department> _departmentRepository;
 
@@ -14,11 +14,11 @@ internal class GetAllDepartmentsQueryHandler : IRequestHandler<GetAllDepartments
         IGenericRepository<Department> departmentRepository) =>
         _departmentRepository = departmentRepository;
 
-    public async Task<IEnumerable<DepartmentDto>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<DepartmentDTO>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
     {
         var departments = await _departmentRepository.GetAllAsync();
 
-        var departmentList = departments.Select(x => new DepartmentDto
+        var departmentList = departments.Select(x => new DepartmentDTO
         {
             Id = x.Id,
             Code = x.Code,

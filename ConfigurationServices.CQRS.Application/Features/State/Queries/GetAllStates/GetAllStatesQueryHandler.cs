@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.States.Queries.GetAllStates;
 
-internal class GetAllStatesQueryHandler : IRequestHandler<GetAllStatesQuery, IEnumerable<StateDto>>
+internal class GetAllStatesQueryHandler : IRequestHandler<GetAllStatesQuery, IEnumerable<StateDTO>>
 {
     private readonly IGenericRepository<State> _stateRepository;
 
@@ -13,18 +13,13 @@ internal class GetAllStatesQueryHandler : IRequestHandler<GetAllStatesQuery, IEn
         IGenericRepository<State> stateRepository) =>
         _stateRepository = stateRepository;
 
-    public async Task<IEnumerable<StateDto>> Handle(GetAllStatesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<StateDTO>> Handle(GetAllStatesQuery request, CancellationToken cancellationToken)
     {
         var companies = await _stateRepository.GetAllAsync();
 
-        var stateList = companies.Select(x => new StateDto
+        var stateList = companies.Select(x => new StateDTO
         {
-            Id = x.Id,
-            Name = x.Name,
-            Code = x.Code,
-            CreatedDate = x.CreatedDate,
-            UpdatedDate = x.UpdatedDate,
-            IsActive = x.IsActive
+
         }).ToList();
 
         return stateList;

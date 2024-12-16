@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Application.DTOs;
 
-public class SearchEmployeeDTO
+public class StateDTO
 {
 
 }

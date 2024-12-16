@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.States.Queries.GetStateById;
 
-internal class GetStateByIdQueryHandler : IRequestHandler<GetStateByIdQuery, StateDto>
+internal class GetStateByIdQueryHandler : IRequestHandler<GetStateByIdQuery, StateDTO>
 {
     private readonly IGenericRepository<State> _stateRepository;
 
@@ -13,11 +13,11 @@ internal class GetStateByIdQueryHandler : IRequestHandler<GetStateByIdQuery, Sta
         IGenericRepository<State> stateRepository) =>
         _stateRepository = stateRepository;
 
-    public async Task<StateDto> Handle(GetStateByIdQuery request, CancellationToken cancellationToken)
+    public async Task<StateDTO> Handle(GetStateByIdQuery request, CancellationToken cancellationToken)
     {
         var state = await _stateRepository.GetByIdAsync(request.Id);
         if (state == null) return null;
-        return new StateDto
+        return new StateDTO
         {
         };
     }

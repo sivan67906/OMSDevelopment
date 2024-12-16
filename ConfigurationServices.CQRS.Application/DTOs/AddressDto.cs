@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Application.DTOs;
 
-public class AddressDto
+public class AddressDTO
 {
     public int Id { get; set; }
     public string? Address1 { get; set; }

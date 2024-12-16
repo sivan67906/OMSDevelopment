@@ -6,16 +6,18 @@ namespace ConfigurationServices.CQRS.Application.Features.Countries.Commands.Upd
 
 internal class UpdateCountryCommandHandler : IRequestHandler<UpdateCountryCommand>
 {
-    private readonly IGenericRepository<CountryDto> _countryRepository;
+    private readonly IGenericRepository<CountryDTO> _countryRepository;
 
     public UpdateCountryCommandHandler(
-        IGenericRepository<CountryDto> countryRepository) =>
+        IGenericRepository<CountryDTO> countryRepository) =>
         _countryRepository = countryRepository;
 
     public async Task Handle(UpdateCountryCommand request, CancellationToken cancellationToken)
     {
-        var country = new CountryDto
+        var country = new CountryDTO
         {
+            Id = request.Id,
+            Name = request.Name
         };
 
         await _countryRepository.UpdateAsync(country);

@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Companies.Queries.GetAllCompanies;
 
-internal class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuery, IEnumerable<CompanyDto>>
+internal class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuery, IEnumerable<CompanyDTO>>
 {
     private readonly IGenericRepository<Company> _companyRepository;
 
@@ -13,11 +13,11 @@ internal class GetAllCompaniesQueryHandler : IRequestHandler<GetAllCompaniesQuer
         IGenericRepository<Company> companyRepository) =>
         _companyRepository = companyRepository;
 
-    public async Task<IEnumerable<CompanyDto>> Handle(GetAllCompaniesQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CompanyDTO>> Handle(GetAllCompaniesQuery request, CancellationToken cancellationToken)
     {
         var companies = await _companyRepository.GetAllAsync();
 
-        var companyList = companies.Select(x => new CompanyDto
+        var companyList = companies.Select(x => new CompanyDTO
         {
             Id = x.Id,
             Name = x.Name,

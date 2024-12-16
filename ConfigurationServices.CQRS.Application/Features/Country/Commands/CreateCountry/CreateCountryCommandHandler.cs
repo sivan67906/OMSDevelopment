@@ -5,13 +5,13 @@ using MediatR;
 namespace ConfigurationServices.CQRS.Application.Features.Countries.Commands.CreateCountry;
 
 internal class CreateCountryCommandHandler(
-    IGenericRepository<CountryDto> countryRepository) : IRequestHandler<CreateCountryCommand>
+    IGenericRepository<CountryDTO> countryRepository) : IRequestHandler<CreateCountryCommand>
 {
     public async Task Handle(CreateCountryCommand request, CancellationToken cancellationToken)
     {
-        var country = new CountryDto
+        var country = new CountryDTO
         {
-
+            Name = request.Name
         };
 
         await countryRepository.CreateAsync(country);

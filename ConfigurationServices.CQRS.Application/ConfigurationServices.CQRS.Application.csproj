@@ -7,9 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Address\**" />
+    <Compile Remove="Features\Country\**" />
     <Compile Remove="Features\Products\**" />
+    <Compile Remove="Features\State\**" />
+    <EmbeddedResource Remove="Features\Address\**" />
+    <EmbeddedResource Remove="Features\Country\**" />
     <EmbeddedResource Remove="Features\Products\**" />
+    <EmbeddedResource Remove="Features\State\**" />
+    <None Remove="Features\Address\**" />
+    <None Remove="Features\Country\**" />
     <None Remove="Features\Products\**" />
+    <None Remove="Features\State\**" />
   </ItemGroup>
 
   <ItemGroup>

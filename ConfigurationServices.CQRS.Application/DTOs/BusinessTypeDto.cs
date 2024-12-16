@@ -1,6 +1,6 @@
 ﻿namespace ConfigurationServices.CQRS.Domain.Entities;
 
-public sealed class BusinessTypeDto
+public sealed class BusinessTypeDTO
 {
     public int Id { get; set; }
     public string Code { get; set; } = string.Empty;

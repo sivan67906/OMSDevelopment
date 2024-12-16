@@ -1,4 +1,4 @@
-using ConfigurationServices.CQRS.Domain.Entities;
+using ConfigurationServices.CQRS.Application.DTOs;
 using ConfigurationServices.CQRS.Domain.Interfaces;
 using MediatR;
 
@@ -6,10 +6,10 @@ namespace ConfigurationServices.CQRS.Application.Features.Addresses.Commands.Del
 
 internal class DeleteAddressCommandHandler : IRequestHandler<DeleteAddressCommand>
 {
-    private readonly IGenericRepository<AddressDto> _addressRepository;
+    private readonly IGenericRepository<AddressDTO> _addressRepository;
 
     public DeleteAddressCommandHandler(
-        IGenericRepository<AddressDto> addressRepository) =>
+        IGenericRepository<AddressDTO> addressRepository) =>
         _addressRepository = addressRepository;
     public async Task Handle(DeleteAddressCommand request, CancellationToken cancellationToken)
     {

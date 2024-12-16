@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Designations.Queries.GetDesignationById;
 
-internal class GetDesignationByIdQueryHandler : IRequestHandler<GetDesignationByIdQuery, DesignationDto>
+internal class GetDesignationByIdQueryHandler : IRequestHandler<GetDesignationByIdQuery, DesignationDTO>
 {
     private readonly IGenericRepository<Designation> _designationRepository;
 
@@ -13,11 +13,11 @@ internal class GetDesignationByIdQueryHandler : IRequestHandler<GetDesignationBy
         IGenericRepository<Designation> designationRepository) =>
         _designationRepository = designationRepository;
 
-    public async Task<DesignationDto> Handle(GetDesignationByIdQuery request, CancellationToken cancellationToken)
+    public async Task<DesignationDTO> Handle(GetDesignationByIdQuery request, CancellationToken cancellationToken)
     {
         var designation = await _designationRepository.GetByIdAsync(request.Id);
         if (designation == null) return null;
-        return new DesignationDto
+        return new DesignationDTO
         {
             Id = designation.Id,
             Code = designation.Code,

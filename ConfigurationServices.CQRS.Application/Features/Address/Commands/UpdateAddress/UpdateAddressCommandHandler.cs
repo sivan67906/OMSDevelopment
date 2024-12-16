@@ -1,4 +1,4 @@
-using ConfigurationServices.CQRS.Domain.Entities;
+using ConfigurationServices.CQRS.Application.DTOs;
 using ConfigurationServices.CQRS.Domain.Interfaces;
 using MediatR;
 
@@ -6,15 +6,15 @@ namespace ConfigurationServices.CQRS.Application.Features.Addresses.Commands.Upd
 
 internal class UpdateAddressCommandHandler : IRequestHandler<UpdateAddressCommand>
 {
-    private readonly IGenericRepository<AddressDto> _addressRepository;
+    private readonly IGenericRepository<AddressDTO> _addressRepository;
 
     public UpdateAddressCommandHandler(
-        IGenericRepository<AddressDto> addressRepository) =>
+        IGenericRepository<AddressDTO> addressRepository) =>
         _addressRepository = addressRepository;
 
     public async Task Handle(UpdateAddressCommand request, CancellationToken cancellationToken)
     {
-        var address = new AddressDto
+        var address = new AddressDTO
         {
         };
 

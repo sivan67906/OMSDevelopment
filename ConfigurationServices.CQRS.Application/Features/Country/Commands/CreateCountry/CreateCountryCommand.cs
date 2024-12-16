@@ -4,7 +4,7 @@ namespace ConfigurationServices.CQRS.Application.Features.Countries.Commands.Cre
 
 public class CreateCountryCommand : IRequest
 {
-
+    public string Name { get; set; }
 }
 
 

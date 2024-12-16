@@ -5,7 +5,7 @@ using MediatR;
 
 namespace ConfigurationServices.CQRS.Application.Features.Categories.Queries.GetCategoryById;
 
-internal class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryDto>
+internal class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuery, CategoryDTO>
 {
     private readonly IGenericRepository<Category> _categoryRepository;
 
@@ -13,11 +13,11 @@ internal class GetCategoryByIdQueryHandler : IRequestHandler<GetCategoryByIdQuer
         IGenericRepository<Category> categoryRepository) =>
         _categoryRepository = categoryRepository;
 
-    public async Task<CategoryDto> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+    public async Task<CategoryDTO> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
     {
         var category = await _categoryRepository.GetByIdAsync(request.Id);
         if (category == null) return null;
-        return new CategoryDto
+        return new CategoryDTO
         {
         };
     }
