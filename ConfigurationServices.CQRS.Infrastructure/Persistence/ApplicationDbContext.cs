@@ -38,4 +38,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<LeadAgent> LeadAgents { get; set; }
     public DbSet<LeadCategory> LeadCategories { get; set; }
     public DbSet<Client> clients { get; set; }
+    public DbSet<LeadStatus> LeadStatus { get; set; }
+    public DbSet<LeadSource> LeadSource { get; set; }
 }

@@ -12,7 +12,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index(string searchQuery = null)
+        public async Task<IActionResult> Client(string searchQuery = null)
         {
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             //var productList = await client.GetFromJsonAsync<List<ProductVM>>("Product/GetAll");
@@ -45,7 +45,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         {
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PostAsJsonAsync<ClientVM>("Client/Create", product);
-            return RedirectToAction("Index");
+            return RedirectToAction("Client");
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
             if (product.Id == 0) return View();
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PutAsJsonAsync<ClientVM>("Client/Update/", product);
-            return RedirectToAction("Index");
+            return RedirectToAction("Client");
         }
 
         [HttpGet]
@@ -81,7 +81,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
             if (product.Id == 0) return View();
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var productList = await client.DeleteAsync("Client/Delete?Id=" + product.Id);
-            return RedirectToAction("Index");
+            return RedirectToAction("Client");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index(string searchQuery = null)
+        public async Task<IActionResult> LeadAgent(string searchQuery = null)
         {
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             //var productList = await client.GetFromJsonAsync<List<ProductVM>>("Product/GetAll");
@@ -31,8 +31,9 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
             }
             ViewData["searchQuery"] = searchQuery; // Retain search query
             return View(productList);
-        }
 
+            return View();
+        }
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -45,7 +46,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         {
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PostAsJsonAsync<LeadAgentVM>("LeadAgent/Create", product);
-            return RedirectToAction("Index");
+            return RedirectToAction("LeadAgent");
         }
 
         [HttpGet]
@@ -63,7 +64,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
             if (product.Id == 0) return View();
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PutAsJsonAsync<LeadAgentVM>("LeadAgent/Update/", product);
-            return RedirectToAction("Index");
+            return RedirectToAction("LeadAgent");
         }
 
         [HttpGet]
@@ -81,7 +82,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
             if (product.Id == 0) return View();
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var productList = await client.DeleteAsync("LeadAgent/Delete?Id=" + product.Id);
-            return RedirectToAction("Index");
+            return RedirectToAction("LeadAgent");
         }
     }
 }

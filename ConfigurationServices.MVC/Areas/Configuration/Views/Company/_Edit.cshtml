@@ -68,7 +68,8 @@
 							<span asp-validation-for="CategoryId" class="text-danger"></span> *@
 						</div>
 						<div class="col-lg-4">
-							<input id="txtDescription" type="text" class="form-control" name="Description" placeholder="enter Description" value="@Model.Description">
+							<textarea id="txtDescription" class="form-control" rows="5" placeholder="enter Description" name="Description">@Model.Description</textarea>
+							@* <input id="txtDescription" type="text" class="form-control" name="Description" placeholder="enter Description" value="@Model.Description"> *@
 							@* <span asp-validation-for="Description" class="text-danger"></span> *@
 						</div>
 					</div>

@@ -5,7 +5,7 @@
 namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class asdf : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -72,6 +72,83 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "clients",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClientName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address1 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    State = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ZipCode = table.Column<int>(type: "int", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_clients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeadAgents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AgentName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeadAgents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeadCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeadCategories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeadSource",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    source = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeadSource", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "LeadStatus",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Color = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_LeadStatus", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "LocationLevels",
                 columns: table => new
                 {
@@ -87,25 +164,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LocationLevels", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OrganisationHierarchies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ParentId = table.Column<int>(type: "int", nullable: false),
-                    OrganisationTypeId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrganisationHierarchies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -202,6 +260,31 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                         column: x => x.LocationLevelId,
                         principalTable: "LocationLevels",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrganisationHierarchies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ParentId = table.Column<int>(type: "int", nullable: true),
+                    OrganisationTypeId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrganisationHierarchies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrganisationHierarchies_OrganisationTypes_OrganisationTypeId",
+                        column: x => x.OrganisationTypeId,
+                        principalTable: "OrganisationTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -358,7 +441,8 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                         column: x => x.DepartmentId,
                         principalTable: "Departments",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                        onDelete: ReferentialAction.NoAction
+                        );
                     table.ForeignKey(
                         name: "FK_Roles_Designations_DesignationId",
                         column: x => x.DesignationId,
@@ -408,6 +492,11 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                 column: "LocationLevelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrganisationHierarchies_OrganisationTypeId",
+                table: "OrganisationHierarchies",
+                column: "OrganisationTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Roles_CompanyId",
                 table: "Roles",
                 column: "CompanyId");
@@ -433,13 +522,25 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                 name: "BusinessLocations");
 
             migrationBuilder.DropTable(
+                name: "clients");
+
+            migrationBuilder.DropTable(
                 name: "Consumers");
 
             migrationBuilder.DropTable(
-                name: "OrganisationHierarchies");
+                name: "LeadAgents");
 
             migrationBuilder.DropTable(
-                name: "OrganisationTypes");
+                name: "LeadCategories");
+
+            migrationBuilder.DropTable(
+                name: "LeadSource");
+
+            migrationBuilder.DropTable(
+                name: "LeadStatus");
+
+            migrationBuilder.DropTable(
+                name: "OrganisationHierarchies");
 
             migrationBuilder.DropTable(
                 name: "Roles");
@@ -449,6 +550,9 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "PlanTypes");
+
+            migrationBuilder.DropTable(
+                name: "OrganisationTypes");
 
             migrationBuilder.DropTable(
                 name: "Designations");

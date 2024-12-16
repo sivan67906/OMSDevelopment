@@ -34,6 +34,7 @@
     <Folder Include="Areas\Configuration\Models\" />
     <Folder Include="Areas\Settings\Data\" />
     <Folder Include="Areas\Settings\Models\" />
+    <Folder Include="Areas\Settings\Views\Shared\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\matrica\assets\libs\chart.js\docs\" />
     <Folder Include="wwwroot\matrica\assets\libs\code-prettify\src\" />

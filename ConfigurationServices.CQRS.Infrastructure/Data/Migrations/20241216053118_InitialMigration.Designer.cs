@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241215213959_jhghj")]
-    partial class jhghj
+    [Migration("20241216053118_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -226,6 +226,55 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Client", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClientName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ZipCode")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("clients");
+                });
+
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Company", b =>
                 {
                     b.Property<int>("Id")
@@ -335,8 +384,7 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlanTypeId")
-                        .IsUnique();
+                    b.HasIndex("PlanTypeId");
 
                     b.ToTable("Consumers");
                 });
@@ -426,6 +474,73 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Designations");
+                });
+
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LeadAgent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AgentName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadAgents");
+                });
+
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LeadCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadCategories");
+                });
+
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LeadSource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("source")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadSource");
+                });
+
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LeadStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Color")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadStatus");
                 });
 
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Location", b =>
@@ -679,8 +794,8 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Consumer", b =>
                 {
                     b.HasOne("ConfigurationServices.CQRS.Domain.Entities.PlanType", "PlanType")
-                        .WithOne("Consumer")
-                        .HasForeignKey("ConfigurationServices.CQRS.Domain.Entities.Consumer", "PlanTypeId")
+                        .WithMany("Consumers")
+                        .HasForeignKey("PlanTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -812,7 +927,7 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.PlanType", b =>
                 {
-                    b.Navigation("Consumer");
+                    b.Navigation("Consumers");
                 });
 #pragma warning restore 612, 618
         }
