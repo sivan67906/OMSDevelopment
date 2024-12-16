@@ -25,7 +25,7 @@ internal class DeleteRoleCommandHandler : IRequestHandler<DeleteRoleCommand>
             IsActive = request.IsActive,
         };
 
-        await _roleRepository.DeleteAsync(role);
+        //await _roleRepository.DeleteAsync(role);
     }
 }
 

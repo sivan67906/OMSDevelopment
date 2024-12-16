@@ -4,7 +4,7 @@ namespace ConfigurationServices.CQRS.Application.Features.BusinessTypes.Commands
 {
     public class DeleteBusinessTypeCommand : IRequest
     {
-
+        public int Id { get; set; }
     }
 }
 

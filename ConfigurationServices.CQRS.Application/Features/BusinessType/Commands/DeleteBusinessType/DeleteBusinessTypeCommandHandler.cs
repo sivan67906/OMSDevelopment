@@ -18,7 +18,7 @@ internal class DeleteBusinessTypeCommandHandler : IRequestHandler<DeleteBusiness
 
         };
 
-        await _businessTypeRepository.DeleteAsync(businessType);
+        //await _businessTypeRepository.DeleteAsync(businessType);
     }
 }
 

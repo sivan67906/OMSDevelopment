@@ -31,6 +31,6 @@ internal class DeleteBusinessLocationCommandHandler : IRequestHandler<DeleteBusi
             IsActive = request.IsActive
         };
 
-        await _businessLocationRepository.DeleteAsync(businessLocation);
+        await _businessLocationRepository.DeleteAsync(businessLocation.Id);
     }
 }

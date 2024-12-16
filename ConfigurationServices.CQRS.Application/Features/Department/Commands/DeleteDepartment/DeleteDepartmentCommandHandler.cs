@@ -24,6 +24,6 @@ internal class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartment
             IsActive = request.IsActive
         };
 
-        await _departmentRepository.DeleteAsync(department);
+        //await _departmentRepository.DeleteAsync(department);
     }
 }

@@ -4,7 +4,7 @@ namespace ConfigurationServices.CQRS.Application.Features.Categories.Commands.De
 {
     public class DeleteCategoryCommand : IRequest
     {
-
+        public int Id { get; set; }
     }
 }
 

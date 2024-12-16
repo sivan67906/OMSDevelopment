@@ -9,24 +9,20 @@
   <ItemGroup>
     <Compile Remove="Areas\BusinessLocation\**" />
     <Compile Remove="Areas\Company\**" />
+    <Compile Remove="Areas\Configuration\Views\SearchEmployee\**" />
     <Compile Remove="Areas\Consumer\**" />
     <Content Remove="Areas\BusinessLocation\**" />
     <Content Remove="Areas\Company\**" />
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\**" />
     <Content Remove="Areas\Consumer\**" />
     <EmbeddedResource Remove="Areas\BusinessLocation\**" />
     <EmbeddedResource Remove="Areas\Company\**" />
+    <EmbeddedResource Remove="Areas\Configuration\Views\SearchEmployee\**" />
     <EmbeddedResource Remove="Areas\Consumer\**" />
     <None Remove="Areas\BusinessLocation\**" />
     <None Remove="Areas\Company\**" />
+    <None Remove="Areas\Configuration\Views\SearchEmployee\**" />
     <None Remove="Areas\Consumer\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Areas\Configuration\Views\SearchEmployee\Index.cshtml" />
-    <Content Remove="Areas\Configuration\Views\SearchEmployee\SearchEmployee.cshtml" />
-    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Create.cshtml" />
-    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Delete.cshtml" />
-    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Edit.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,7 +32,8 @@
   <ItemGroup>
     <Folder Include="Areas\Configuration\Data\" />
     <Folder Include="Areas\Configuration\Models\" />
-    <Folder Include="Areas\Configuration\Views\SearchEmployee\" />
+    <Folder Include="Areas\Settings\Data\" />
+    <Folder Include="Areas\Settings\Models\" />
     <Folder Include="Controllers\" />
     <Folder Include="wwwroot\matrica\assets\libs\chart.js\docs\" />
     <Folder Include="wwwroot\matrica\assets\libs\code-prettify\src\" />

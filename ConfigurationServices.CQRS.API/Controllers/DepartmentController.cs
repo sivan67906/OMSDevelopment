@@ -45,9 +45,10 @@ public class DepartmentController : ControllerBase
     }
 
     [HttpDelete("Delete")]
-    public async Task<IActionResult> Delete(DeleteDepartmentCommand command)
+    [HttpDelete("Delete")]
+    public async Task<IActionResult> Delete(int Id)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(new DeleteDepartmentCommand { Id = Id });
         return NoContent();
     }
 }

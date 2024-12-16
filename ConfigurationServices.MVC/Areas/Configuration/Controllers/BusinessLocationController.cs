@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Text.Json;
-using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
+﻿using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigurationServices.MVC.Areas.Configuration.Controllers;
@@ -77,32 +75,41 @@ public class BusinessLocationController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(BusinessLocationVM businessLocation)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<BusinessLocationVM>(businessLocation, options);
-
         if (businessLocation.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        var businessLocationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "BusinessLocation/Delete", businessLocation);
-        return RedirectToAction("Index");
+        await client.DeleteAsync("BusinessLocation/Delete?Id=" + businessLocation.Id);
+        return RedirectToAction("BusinessLocation");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(BusinessLocationVM businessLocation)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<BusinessLocationVM>(businessLocation, options);
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //    if (businessLocation.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var businessLocationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "BusinessLocation/Delete", businessLocation);
+    //    return RedirectToAction("Index");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 }

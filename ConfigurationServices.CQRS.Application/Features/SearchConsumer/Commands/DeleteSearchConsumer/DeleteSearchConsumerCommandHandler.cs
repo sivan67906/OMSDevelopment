@@ -29,6 +29,6 @@ internal class DeleteSearchConsumerCommandHandler : IRequestHandler<DeleteSearch
             IsActive = request.IsActive
         };
 
-        await _consumerRepository.DeleteAsync(consumer);
+        //await _consumerRepository.DeleteAsync(consumer);
     }
 }

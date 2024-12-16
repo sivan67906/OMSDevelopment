@@ -18,7 +18,7 @@ internal class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComm
 
         };
 
-        await _categoryRepository.DeleteAsync(category);
+        //await _categoryRepository.DeleteAsync(category);
     }
 }
 

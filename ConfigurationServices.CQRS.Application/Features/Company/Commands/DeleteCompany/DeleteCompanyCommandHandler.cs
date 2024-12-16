@@ -29,6 +29,6 @@ internal class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyComman
             IsActive = request.IsActive
         };
 
-        await _companyRepository.DeleteAsync(company);
+        //await _companyRepository.DeleteAsync(company);
     }
 }

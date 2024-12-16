@@ -18,6 +18,6 @@ internal class DeleteConsumerCommandHandler : IRequestHandler<DeleteConsumerComm
             Id = request.Id
         };
 
-        await _consumerRepository.DeleteAsync(consumer);
+        //await _consumerRepository.DeleteAsync(consumer);
     }
 }

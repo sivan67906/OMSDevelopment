@@ -45,9 +45,9 @@ public class CompanyController : ControllerBase
     }
 
     [HttpDelete("Delete")]
-    public async Task<IActionResult> Delete(DeleteCompanyCommand command)
+    public async Task<IActionResult> Delete(int Id)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(new DeleteCompanyCommand { Id = Id });
         return NoContent();
     }
 }

@@ -19,6 +19,9 @@ public static class ServiceContainer
 
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IConsumerService, ConsumerService>();
+        services.AddScoped<ILeadAgentService, LeadAgentService>();
+        services.AddScoped<ILeadCategoryService, LeadCategoryservice>();
+        services.AddScoped<IClientService, ClientService>();
 
         return services;
     }

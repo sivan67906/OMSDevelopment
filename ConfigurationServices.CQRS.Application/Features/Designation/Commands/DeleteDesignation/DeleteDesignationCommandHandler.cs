@@ -24,7 +24,7 @@ internal class DeleteDesignationCommandHandler : IRequestHandler<DeleteDesignati
             IsActive = request.IsActive
         };
 
-        await _designationRepository.DeleteAsync(designation);
+        //await _designationRepository.DeleteAsync(designation);
     }
 }
 

@@ -33,4 +33,9 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<AddressDetail> AddressDetails { get; set; }
     public DbSet<OrganisationType> OrganisationTypes { get; set; }
     public DbSet<OrganisationHierarchy> OrganisationHierarchies { get; set; }
+
+
+    public DbSet<LeadAgent> LeadAgents { get; set; }
+    public DbSet<LeadCategory> LeadCategories { get; set; }
+    public DbSet<Client> clients { get; set; }
 }

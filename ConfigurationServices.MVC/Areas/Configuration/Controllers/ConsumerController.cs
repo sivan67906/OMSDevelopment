@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Text.Json;
-using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
+﻿using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigurationServices.MVC.Areas.Consumer.Controllers;
@@ -86,38 +84,49 @@ public class ConsumerController : Controller
         return PartialView("_Delete", consumer);
     }
 
+
     [HttpPost]
     public async Task<IActionResult> Delete(ConsumerVM consumer)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<ConsumerVM>(consumer, options);
-
         if (consumer.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        //client.DeleteAsync("Consumer/Delete" + )
-        var consumerList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Consumer/Delete", consumer);
+        await client.DeleteAsync("Consumer/Delete?Id=" + consumer.Id);
         return RedirectToAction("Consumer");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(ConsumerVM consumer)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<ConsumerVM>(consumer, options);
+
+    //    if (consumer.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    //client.DeleteAsync("Consumer/Delete" + )
+    //    var consumerList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Consumer/Delete", consumer);
+    //    return RedirectToAction("Consumer");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 
 
 

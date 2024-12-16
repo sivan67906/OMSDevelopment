@@ -45,9 +45,9 @@ public class DesignationController : ControllerBase
     }
 
     [HttpDelete("Delete")]
-    public async Task<IActionResult> Delete(DeleteDesignationCommand command)
+    public async Task<IActionResult> Delete(int Id)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(new DeleteDesignationCommand { Id = Id });
         return NoContent();
     }
 }

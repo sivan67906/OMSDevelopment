@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.Json;
 using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -85,34 +83,44 @@ public class DepartmentController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(DepartmentVM department)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<DepartmentVM>(department, options);
-
         if (department.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        var departmentList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Department/Delete", department);
+        await client.DeleteAsync("Department/Delete?Id=" + department.Id);
         return RedirectToAction("Department");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(DepartmentVM department)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<DepartmentVM>(department, options);
+
+    //    if (department.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var departmentList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Department/Delete", department);
+    //    return RedirectToAction("Department");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 
 
 

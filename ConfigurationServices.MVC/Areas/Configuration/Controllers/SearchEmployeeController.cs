@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.Json;
 using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -77,34 +75,43 @@ public class SearchEmployeeController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(SearchEmployeeVM searchEmployee)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<SearchEmployeeVM>(searchEmployee, options);
-
         if (searchEmployee.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        var searchEmployeeList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "SearchEmployee/Delete", searchEmployee);
-        return RedirectToAction("Index");
+        await client.DeleteAsync("SearchEmployee/Delete?Id=" + searchEmployee.Id);
+        return RedirectToAction("SearchEmployee");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(SearchEmployeeVM searchEmployee)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<SearchEmployeeVM>(searchEmployee, options);
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //    if (searchEmployee.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var searchEmployeeList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "SearchEmployee/Delete", searchEmployee);
+    //    return RedirectToAction("Index");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 
 
 

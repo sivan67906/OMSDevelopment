@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.Json;
 using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -91,37 +89,48 @@ public class DesignationController : Controller
         return PartialView("_Delete", designation);
     }
 
+
     [HttpPost]
     public async Task<IActionResult> Delete(DesignationVM designation)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<DesignationVM>(designation, options);
-
         if (designation.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        var designationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Designation/Delete", designation);
+        await client.DeleteAsync("Designation/Delete?Id=" + designation.Id);
         return RedirectToAction("Designation");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(DesignationVM designation)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<DesignationVM>(designation, options);
+
+    //    if (designation.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var designationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Designation/Delete", designation);
+    //    return RedirectToAction("Designation");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 
 
 

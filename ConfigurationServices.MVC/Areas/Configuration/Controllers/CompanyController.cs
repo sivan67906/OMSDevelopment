@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Text.Json;
-using ConfigurationServices.CQRS.Application.DTOs;
+﻿using ConfigurationServices.CQRS.Application.DTOs;
 using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -87,32 +85,41 @@ public class CompanyController : Controller
     [HttpPost]
     public async Task<IActionResult> Delete(CompanyVM company)
     {
-        JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
-        {
-            WriteIndented = true
-        };
-        string forecastJson = JsonSerializer.Serialize<CompanyVM>(company, options);
-
         if (company.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
-        var companyList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Company/Delete", company);
+        await client.DeleteAsync("Company/Delete?Id=" + company.Id);
         return RedirectToAction("Company");
     }
 
-    public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
-    {
-        using (var client = new HttpClient())
-        {
-            var json = JsonSerializer.Serialize(entity);
-            var content = new StringContent(json, Encoding.UTF8, "application/json");
+    //[HttpPost]
+    //public async Task<IActionResult> Delete(CompanyVM company)
+    //{
+    //    JsonSerializerOptions options = new(JsonSerializerDefaults.Web)
+    //    {
+    //        WriteIndented = true
+    //    };
+    //    string forecastJson = JsonSerializer.Serialize<CompanyVM>(company, options);
 
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Delete,
-                RequestUri = new Uri(url),
-                Content = content
-            };
-            return await client.SendAsync(request);
-        }
-    }
+    //    if (company.Id == 0) return View();
+    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var companyList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Company/Delete", company);
+    //    return RedirectToAction("Company");
+    //}
+
+    //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)
+    //{
+    //    using (var client = new HttpClient())
+    //    {
+    //        var json = JsonSerializer.Serialize(entity);
+    //        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+    //        var request = new HttpRequestMessage
+    //        {
+    //            Method = HttpMethod.Delete,
+    //            RequestUri = new Uri(url),
+    //            Content = content
+    //        };
+    //        return await client.SendAsync(request);
+    //    }
+    //}
 }

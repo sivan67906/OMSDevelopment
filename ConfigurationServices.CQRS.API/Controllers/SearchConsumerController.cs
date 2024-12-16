@@ -89,9 +89,9 @@ public class SearchConsumerController : ControllerBase
     }
 
     [HttpDelete("Delete")]
-    public async Task<IActionResult> Delete(DeleteSearchConsumerCommand command)
+    public async Task<IActionResult> Delete(int Id)
     {
-        await _mediator.Send(command);
+        await _mediator.Send(new DeleteSearchConsumerCommand { Id = Id });
         return NoContent();
     }
 }
