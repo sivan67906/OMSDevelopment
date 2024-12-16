@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using ConfigurationServices.CQRS.MVC.Areas.Settings.Models;
+﻿using ConfigurationServices.CQRS.MVC.Areas.Settings.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
 {
@@ -14,7 +14,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         }
         public async Task<IActionResult> Index(string searchQuery = null)
         {
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             //var productList = await client.GetFromJsonAsync<List<ProductVM>>("Product/GetAll");
 
             List<LeadSourceVM> productList;
@@ -43,7 +43,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(LeadSourceVM product)
         {
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PostAsJsonAsync<LeadSourceVM>("LeadSource/Create", product);
             return RedirectToAction("Index");
         }
@@ -52,7 +52,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             if (Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var product = await client.GetFromJsonAsync<LeadSourceVM>("LeadSource/GetById/?Id=" + Id);
             return PartialView("_Edit", product);
         }
@@ -61,7 +61,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Update(LeadSourceVM product)
         {
             if (product.Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PutAsJsonAsync<LeadSourceVM>("LeadSource/Update/", product);
             return RedirectToAction("Index");
         }
@@ -70,7 +70,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var product = await client.GetFromJsonAsync<LeadSourceVM>("LeadSource/GetById/?Id=" + Id);
             return PartialView("_Delete", product);
         }
@@ -79,7 +79,7 @@ namespace ConfigurationServices.CQRS.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Delete(LeadStatusVM product)
         {
             if (product.Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSSettingsApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var productList = await client.DeleteAsync("LeadSource/Delete?Id=" + product.Id);
             return RedirectToAction("Index");
         }

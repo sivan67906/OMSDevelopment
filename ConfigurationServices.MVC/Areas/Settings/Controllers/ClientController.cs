@@ -14,7 +14,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         }
         public async Task<IActionResult> Index(string searchQuery = null)
         {
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             //var productList = await client.GetFromJsonAsync<List<ProductVM>>("Product/GetAll");
 
             List<ClientVM> productList;
@@ -43,7 +43,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(ClientVM product)
         {
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PostAsJsonAsync<ClientVM>("Client/Create", product);
             return RedirectToAction("Index");
         }
@@ -52,7 +52,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Edit(int Id)
         {
             if (Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var product = await client.GetFromJsonAsync<ClientVM>("Client/GetById/?Id=" + Id);
             return PartialView("_Edit", product);
         }
@@ -61,7 +61,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Update(ClientVM product)
         {
             if (product.Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             await client.PutAsJsonAsync<ClientVM>("Client/Update/", product);
             return RedirectToAction("Index");
         }
@@ -70,7 +70,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Delete(int Id)
         {
             if (Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var product = await client.GetFromJsonAsync<ClientVM>("Client/GetById/?Id=" + Id);
             return PartialView("_Delete", product);
         }
@@ -79,7 +79,7 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Delete(ClientVM product)
         {
             if (product.Id == 0) return View();
-            var client = _httpClientFactory.CreateClient("OMSCQRSApiConnection");
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             var productList = await client.DeleteAsync("Client/Delete?Id=" + product.Id);
             return RedirectToAction("Index");
         }

@@ -25,7 +25,7 @@ public class SearchEmployeeController : Controller
         ViewData["bParent"] = "Search Employee";
         ViewData["bChild"] = "Search Employee";
 
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var searchEmployeeList = await client.GetFromJsonAsync<List<SearchEmployeeVM>>("SearchEmployee/GetAll");
         return View(searchEmployeeList);
     }
@@ -40,7 +40,7 @@ public class SearchEmployeeController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(SearchEmployeeVM searchEmployee)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<SearchEmployeeVM>("SearchEmployee/Create", searchEmployee);
         return RedirectToAction("Index");
     }
@@ -49,7 +49,7 @@ public class SearchEmployeeController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var searchEmployee = await client.GetFromJsonAsync<SearchEmployeeVM>("SearchEmployee/GetById/?Id=" + Id);
         return PartialView("_Edit", searchEmployee);
     }
@@ -58,7 +58,7 @@ public class SearchEmployeeController : Controller
     public async Task<IActionResult> Update(SearchEmployeeVM searchEmployee)
     {
         if (searchEmployee.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<SearchEmployeeVM>("SearchEmployee/Update/", searchEmployee);
         return RedirectToAction("Index");
     }
@@ -67,7 +67,7 @@ public class SearchEmployeeController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var searchEmployee = await client.GetFromJsonAsync<SearchEmployeeVM>("SearchEmployee/GetById/?Id=" + Id);
         return PartialView("_Delete", searchEmployee);
     }
@@ -76,7 +76,7 @@ public class SearchEmployeeController : Controller
     public async Task<IActionResult> Delete(SearchEmployeeVM searchEmployee)
     {
         if (searchEmployee.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("SearchEmployee/Delete?Id=" + searchEmployee.Id);
         return RedirectToAction("SearchEmployee");
     }
@@ -91,7 +91,7 @@ public class SearchEmployeeController : Controller
     //    string forecastJson = JsonSerializer.Serialize<SearchEmployeeVM>(searchEmployee, options);
 
     //    if (searchEmployee.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var searchEmployeeList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "SearchEmployee/Delete", searchEmployee);
     //    return RedirectToAction("Index");
     //}

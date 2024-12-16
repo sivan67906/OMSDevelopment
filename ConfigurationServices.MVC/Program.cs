@@ -3,7 +3,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient("ConfigurationServicesApiCall", client =>
+builder.Services.AddHttpClient("ConfigServicesApiCall", client =>
 {
     client.BaseAddress = new Uri("http://localhost:5126/api/");
 });

@@ -25,7 +25,7 @@ public class RoleController : Controller
         ViewData["bParent"] = "Role";
         ViewData["bChild"] = "Role";
 
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var roleList = await client.GetFromJsonAsync<List<RoleVM>>("Role/GetAll");
         return View(roleList);
     }
@@ -40,7 +40,7 @@ public class RoleController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(RoleVM role)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<RoleVM>("Role/Create", role);
         return RedirectToAction("Index");
     }
@@ -49,7 +49,7 @@ public class RoleController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var role = await client.GetFromJsonAsync<RoleVM>("Role/GetById/?Id=" + Id);
         return PartialView("_Edit", role);
     }
@@ -58,7 +58,7 @@ public class RoleController : Controller
     public async Task<IActionResult> Update(RoleVM role)
     {
         if (role.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<RoleVM>("Role/Update/", role);
         return RedirectToAction("Index");
     }
@@ -67,7 +67,7 @@ public class RoleController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var role = await client.GetFromJsonAsync<RoleVM>("Role/GetById/?Id=" + Id);
         return PartialView("_Delete", role);
     }
@@ -76,7 +76,7 @@ public class RoleController : Controller
     public async Task<IActionResult> Delete(RoleVM role)
     {
         if (role.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("Role/Delete?Id=" + role.Id);
         return RedirectToAction("Role");
     }
@@ -91,7 +91,7 @@ public class RoleController : Controller
     //    string forecastJson = JsonSerializer.Serialize<RoleVM>(role, options);
 
     //    if (role.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var roleList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Role/Delete", role);
     //    return RedirectToAction("Index");
     //}

@@ -23,7 +23,7 @@ public class DepartmentController : Controller
         ViewData["bGParent"] = "Configuration";
         ViewData["bParent"] = "Department";
         ViewData["bChild"] = "Department";
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var departmentList = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
         var Companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         ViewBag.CompanyList = Companies;
@@ -34,7 +34,7 @@ public class DepartmentController : Controller
     public async Task<IActionResult> Create()
     {
         DepartmentVM department = new();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var Companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         ViewBag.CompanyList = Companies;
         return PartialView("_Create", department);
@@ -43,7 +43,7 @@ public class DepartmentController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(DepartmentVM department)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<DepartmentVM>("Department/Create", department);
         return RedirectToAction("Department");
     }
@@ -52,7 +52,7 @@ public class DepartmentController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var department = await client.GetFromJsonAsync<DepartmentVM>("Department/GetById/?Id=" + Id);
         var Companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         ViewBag.CompanyList = Companies;
@@ -63,7 +63,7 @@ public class DepartmentController : Controller
     public async Task<IActionResult> Update(DepartmentVM department)
     {
         if (department.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<DepartmentVM>("Department/Update/", department);
 
         return RedirectToAction("Department");
@@ -73,7 +73,7 @@ public class DepartmentController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var department = await client.GetFromJsonAsync<DepartmentVM>("Department/GetById/?Id=" + Id);
         var Companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         ViewBag.CompanyList = Companies;
@@ -84,7 +84,7 @@ public class DepartmentController : Controller
     public async Task<IActionResult> Delete(DepartmentVM department)
     {
         if (department.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("Department/Delete?Id=" + department.Id);
         return RedirectToAction("Department");
     }
@@ -100,7 +100,7 @@ public class DepartmentController : Controller
     //    string forecastJson = JsonSerializer.Serialize<DepartmentVM>(department, options);
 
     //    if (department.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var departmentList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Department/Delete", department);
     //    return RedirectToAction("Department");
     //}

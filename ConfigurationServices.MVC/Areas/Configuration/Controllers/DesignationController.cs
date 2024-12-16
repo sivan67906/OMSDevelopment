@@ -25,7 +25,7 @@ public class DesignationController : Controller
         ViewData["bParent"] = "Designation";
         ViewData["bChild"] = "Designation";
 
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var designationList = await client.GetFromJsonAsync<List<DesignationVM>>("Designation/GetAll");
         var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
@@ -38,7 +38,7 @@ public class DesignationController : Controller
     public async Task<IActionResult> Create()
     {
         DesignationVM designation = new();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
         ViewBag.CompanyList = companies;
@@ -49,7 +49,7 @@ public class DesignationController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(DesignationVM designation)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<DesignationVM>("Designation/Create", designation);
         return RedirectToAction("Designation");
     }
@@ -58,7 +58,7 @@ public class DesignationController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var designation = await client.GetFromJsonAsync<DesignationVM>("Designation/GetById/?Id=" + Id);
         var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
@@ -71,7 +71,7 @@ public class DesignationController : Controller
     public async Task<IActionResult> Update(DesignationVM designation)
     {
         if (designation.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<DesignationVM>("Designation/Update/", designation);
         return RedirectToAction("Designation");
     }
@@ -80,7 +80,7 @@ public class DesignationController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var designation = await client.GetFromJsonAsync<DesignationVM>("Designation/GetById/?Id=" + Id);
         var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
         var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
@@ -94,7 +94,7 @@ public class DesignationController : Controller
     public async Task<IActionResult> Delete(DesignationVM designation)
     {
         if (designation.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("Designation/Delete?Id=" + designation.Id);
         return RedirectToAction("Designation");
     }
@@ -110,7 +110,7 @@ public class DesignationController : Controller
     //    string forecastJson = JsonSerializer.Serialize<DesignationVM>(designation, options);
 
     //    if (designation.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var designationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Designation/Delete", designation);
     //    return RedirectToAction("Designation");
     //}

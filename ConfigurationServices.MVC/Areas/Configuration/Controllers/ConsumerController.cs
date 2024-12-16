@@ -25,7 +25,7 @@ public class ConsumerController : Controller
         ViewData["bGParent"] = "Configuration";
         ViewData["bParent"] = "Consumer";
         ViewData["bChild"] = "Consumer";
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var consumerList = await client.GetFromJsonAsync<List<ConsumerVM>>("Consumer/GetAll");
         var planTypes = await client.GetFromJsonAsync<List<PlanTypeVM>>("PlanType/GetAll");
         ViewBag.PlanType = planTypes;
@@ -37,7 +37,7 @@ public class ConsumerController : Controller
     public async Task<IActionResult> Create()
     {
         ConsumerVM consumer = new();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var planTypes = await client.GetFromJsonAsync<List<PlanTypeVM>>("PlanType/GetAll");
         ViewBag.PlanType = planTypes;
         return PartialView("_Create", consumer);
@@ -46,7 +46,7 @@ public class ConsumerController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(ConsumerVM consumer)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var planTypes = await client.GetFromJsonAsync<List<PlanTypeVM>>("PlanType/GetAll");
         ViewBag.PlanType = planTypes;
         await client.PostAsJsonAsync<ConsumerVM>("Consumer/Create", consumer);
@@ -57,7 +57,7 @@ public class ConsumerController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var planTypes = await client.GetFromJsonAsync<List<PlanTypeVM>>("PlanType/GetAll");
         ViewBag.PlanType = planTypes;
         var consumer = await client.GetFromJsonAsync<ConsumerVM>("Consumer/GetById/?Id=" + Id);
@@ -68,7 +68,7 @@ public class ConsumerController : Controller
     public async Task<IActionResult> Update(ConsumerVM consumer)
     {
         if (consumer.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<ConsumerVM>("Consumer/Update/", consumer);
         return RedirectToAction("Consumer");
     }
@@ -77,7 +77,7 @@ public class ConsumerController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var consumer = await client.GetFromJsonAsync<ConsumerVM>("Consumer/GetById/?Id=" + Id);
         var planTypes = await client.GetFromJsonAsync<List<PlanTypeVM>>("PlanType/GetAll");
         ViewBag.PlanType = planTypes;
@@ -89,7 +89,7 @@ public class ConsumerController : Controller
     public async Task<IActionResult> Delete(ConsumerVM consumer)
     {
         if (consumer.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("Consumer/Delete?Id=" + consumer.Id);
         return RedirectToAction("Consumer");
     }
@@ -105,7 +105,7 @@ public class ConsumerController : Controller
     //    string forecastJson = JsonSerializer.Serialize<ConsumerVM>(consumer, options);
 
     //    if (consumer.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    //client.DeleteAsync("Consumer/Delete" + )
     //    var consumerList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Consumer/Delete", consumer);
     //    return RedirectToAction("Consumer");

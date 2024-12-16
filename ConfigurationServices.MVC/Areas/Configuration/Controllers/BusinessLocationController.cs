@@ -25,7 +25,7 @@ public class BusinessLocationController : Controller
         ViewData["bParent"] = "Business Location";
         ViewData["bChild"] = "Business Location";
 
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var businessLocationList = await client.GetFromJsonAsync<List<BusinessLocationVM>>("BusinessLocation/GetAll");
         return View(businessLocationList);
     }
@@ -40,7 +40,7 @@ public class BusinessLocationController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(BusinessLocationVM businessLocation)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<BusinessLocationVM>("BusinessLocation/Create", businessLocation);
         return RedirectToAction("Index");
     }
@@ -49,7 +49,7 @@ public class BusinessLocationController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var businessLocation = await client.GetFromJsonAsync<BusinessLocationVM>("BusinessLocation/GetById/?Id=" + Id);
         return PartialView("_Edit", businessLocation);
     }
@@ -58,7 +58,7 @@ public class BusinessLocationController : Controller
     public async Task<IActionResult> Update(BusinessLocationVM businessLocation)
     {
         if (businessLocation.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<BusinessLocationVM>("BusinessLocation/Update/", businessLocation);
         return RedirectToAction("Index");
     }
@@ -67,7 +67,7 @@ public class BusinessLocationController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var businessLocation = await client.GetFromJsonAsync<BusinessLocationVM>("BusinessLocation/GetById/?Id=" + Id);
         return PartialView("_Delete", businessLocation);
     }
@@ -76,7 +76,7 @@ public class BusinessLocationController : Controller
     public async Task<IActionResult> Delete(BusinessLocationVM businessLocation)
     {
         if (businessLocation.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("BusinessLocation/Delete?Id=" + businessLocation.Id);
         return RedirectToAction("BusinessLocation");
     }
@@ -91,7 +91,7 @@ public class BusinessLocationController : Controller
     //    string forecastJson = JsonSerializer.Serialize<BusinessLocationVM>(businessLocation, options);
 
     //    if (businessLocation.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var businessLocationList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "BusinessLocation/Delete", businessLocation);
     //    return RedirectToAction("Index");
     //}

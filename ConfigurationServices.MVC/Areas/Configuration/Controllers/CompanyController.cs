@@ -27,7 +27,7 @@ public class CompanyController : Controller
         ViewData["bParent"] = "Company";
         ViewData["bChild"] = "Company";
 
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         var companyList = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
 
         return View(companyList);
@@ -37,7 +37,7 @@ public class CompanyController : Controller
     public async Task<IActionResult> Create()
     {
         CompanyVM company = new();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         ViewBag.BusinessTypes = await client.GetFromJsonAsync<List<BusinessTypeVM>>("BusinessType/GetAll");
         ViewBag.CategoryTypes = await client.GetFromJsonAsync<List<CategoryVM>>("Category/GetAll");
         return PartialView("_Create", company);
@@ -46,7 +46,7 @@ public class CompanyController : Controller
     [HttpPost]
     public async Task<IActionResult> Create(CompanyVM company)
     {
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<CompanyVM>("Company/Create", company);
         return RedirectToAction("Company");
     }
@@ -55,7 +55,7 @@ public class CompanyController : Controller
     public async Task<IActionResult> Edit(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         ViewBag.BusinessTypes = await client.GetFromJsonAsync<List<BusinessTypeVM>>("BusinessType/GetAll");
         ViewBag.CategoryTypes = await client.GetFromJsonAsync<List<CategoryVM>>("Category/GetAll");
         var company = await client.GetFromJsonAsync<CompanyVM>("Company/GetById/?Id=" + Id);
@@ -66,7 +66,7 @@ public class CompanyController : Controller
     public async Task<IActionResult> Update(CompanyVM company)
     {
         if (company.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<CompanyVM>("Company/Update/", company);
         return RedirectToAction("Company");
     }
@@ -75,7 +75,7 @@ public class CompanyController : Controller
     public async Task<IActionResult> Delete(int Id)
     {
         if (Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         ViewBag.BusinessTypes = await client.GetFromJsonAsync<List<BusinessTypeVM>>("BusinessType/GetAll");
         ViewBag.CategoryTypes = await client.GetFromJsonAsync<List<CategoryVM>>("Category/GetAll");
         var company = await client.GetFromJsonAsync<CompanyVM>("Company/GetById/?Id=" + Id);
@@ -86,7 +86,7 @@ public class CompanyController : Controller
     public async Task<IActionResult> Delete(CompanyVM company)
     {
         if (company.Id == 0) return View();
-        var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.DeleteAsync("Company/Delete?Id=" + company.Id);
         return RedirectToAction("Company");
     }
@@ -101,7 +101,7 @@ public class CompanyController : Controller
     //    string forecastJson = JsonSerializer.Serialize<CompanyVM>(company, options);
 
     //    if (company.Id == 0) return View();
-    //    var client = _httpClientFactory.CreateClient("ConfigurationServicesApiCall");
+    //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var companyList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Company/Delete", company);
     //    return RedirectToAction("Company");
     //}
