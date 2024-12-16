@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Areas\BusinessLocation\**" />
+    <Compile Remove="Areas\Company\**" />
+    <Compile Remove="Areas\Consumer\**" />
+    <Content Remove="Areas\BusinessLocation\**" />
+    <Content Remove="Areas\Company\**" />
+    <Content Remove="Areas\Consumer\**" />
+    <EmbeddedResource Remove="Areas\BusinessLocation\**" />
+    <EmbeddedResource Remove="Areas\Company\**" />
+    <EmbeddedResource Remove="Areas\Consumer\**" />
+    <None Remove="Areas\BusinessLocation\**" />
+    <None Remove="Areas\Company\**" />
+    <None Remove="Areas\Consumer\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\Index.cshtml" />
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\SearchEmployee.cshtml" />
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Create.cshtml" />
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Delete.cshtml" />
+    <Content Remove="Areas\Configuration\Views\SearchEmployee\_Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Configuration\Data\" />
+    <Folder Include="Areas\Configuration\Models\" />
+    <Folder Include="Areas\Configuration\Views\SearchEmployee\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\matrica\assets\libs\chart.js\docs\" />
+    <Folder Include="wwwroot\matrica\assets\libs\code-prettify\src\" />
+    <Folder Include="wwwroot\matrica\assets\libs\gmaps\docs\" />
+    <Folder Include="wwwroot\matrica\assets\libs\gmaps\examples\" />
+    <Folder Include="wwwroot\matrica\assets\libs\gmaps\test\" />
+    <Folder Include="wwwroot\matrica\assets\libs\litepicker\types\" />
+    <Folder Include="wwwroot\matrica\assets\libs\raphael\dev\test\" />
+    <Folder Include="wwwroot\matrica\assets\libs\starability\starability-scss\starability\" />
+  </ItemGroup>
+
+</Project>

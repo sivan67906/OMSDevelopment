@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{A49B2803-9596-49A5-A7F2-5A93AF9181D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{E095F02C-8171-45DF-AD74-F310D7544FE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8954ECD8-2EB6-4EC5-B31E-4D7412BFF91C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationServices.CQRS.API", "ConfigurationServices.CQRS.API\ConfigurationServices.CQRS.API.csproj", "{83FB658E-E4D8-48BB-A14E-E718191FC9A7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationServices.CQRS.Application", "ConfigurationServices.CQRS.Application\ConfigurationServices.CQRS.Application.csproj", "{7C3D8241-B1E5-4F3E-9021-9E97C84E301A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationServices.CQRS.Domain", "ConfigurationServices.CQRS.Domain\ConfigurationServices.CQRS.Domain.csproj", "{FA648B70-C666-4D50-AD95-139A5CBE25E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationServices.CQRS.Infrastructure", "ConfigurationServices.CQRS.Infrastructure\ConfigurationServices.CQRS.Infrastructure.csproj", "{C50B43A4-1752-4446-8D6B-1EE5BF007C95}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{9F52DE75-D67C-4475-9DF5-56D35E12D1A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfigurationServices.MVC", "ConfigurationServices.MVC\ConfigurationServices.MVC.csproj", "{D0209CAA-8E89-4547-8968-46426A0E6685}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{83FB658E-E4D8-48BB-A14E-E718191FC9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83FB658E-E4D8-48BB-A14E-E718191FC9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83FB658E-E4D8-48BB-A14E-E718191FC9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83FB658E-E4D8-48BB-A14E-E718191FC9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C3D8241-B1E5-4F3E-9021-9E97C84E301A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3D8241-B1E5-4F3E-9021-9E97C84E301A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3D8241-B1E5-4F3E-9021-9E97C84E301A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3D8241-B1E5-4F3E-9021-9E97C84E301A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA648B70-C666-4D50-AD95-139A5CBE25E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA648B70-C666-4D50-AD95-139A5CBE25E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA648B70-C666-4D50-AD95-139A5CBE25E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA648B70-C666-4D50-AD95-139A5CBE25E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50B43A4-1752-4446-8D6B-1EE5BF007C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50B43A4-1752-4446-8D6B-1EE5BF007C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50B43A4-1752-4446-8D6B-1EE5BF007C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50B43A4-1752-4446-8D6B-1EE5BF007C95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0209CAA-8E89-4547-8968-46426A0E6685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0209CAA-8E89-4547-8968-46426A0E6685}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0209CAA-8E89-4547-8968-46426A0E6685}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0209CAA-8E89-4547-8968-46426A0E6685}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{83FB658E-E4D8-48BB-A14E-E718191FC9A7} = {A49B2803-9596-49A5-A7F2-5A93AF9181D0}
+		{7C3D8241-B1E5-4F3E-9021-9E97C84E301A} = {E095F02C-8171-45DF-AD74-F310D7544FE9}
+		{FA648B70-C666-4D50-AD95-139A5CBE25E9} = {E095F02C-8171-45DF-AD74-F310D7544FE9}
+		{C50B43A4-1752-4446-8D6B-1EE5BF007C95} = {8954ECD8-2EB6-4EC5-B31E-4D7412BFF91C}
+		{D0209CAA-8E89-4547-8968-46426A0E6685} = {9F52DE75-D67C-4475-9DF5-56D35E12D1A5}
+	EndGlobalSection
+EndGlobal
