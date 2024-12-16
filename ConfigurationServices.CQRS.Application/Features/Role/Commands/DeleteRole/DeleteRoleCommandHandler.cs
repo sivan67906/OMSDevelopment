@@ -13,19 +13,7 @@ internal class DeleteRoleCommandHandler : IRequestHandler<DeleteRoleCommand>
         _roleRepository = roleRepository;
     public async Task Handle(DeleteRoleCommand request, CancellationToken cancellationToken)
     {
-        var role = new Role
-        {
-            Id = request.Id,
-            Code = request.Code,
-            Name = request.Name,
-            Description = request.Description,
-            CompanyId = request.CompanyId,
-            DepartmentId = request.DepartmentId,
-            DesignationId = request.DesignationId,
-            IsActive = request.IsActive,
-        };
-
-        //await _roleRepository.DeleteAsync(role);
+        await _roleRepository.DeleteAsync(request.Id);
     }
 }
 

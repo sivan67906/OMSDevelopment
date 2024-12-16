@@ -26,6 +26,9 @@ internal class GetAllRolesQueryHandler : IRequestHandler<GetAllRolesQuery, IEnum
             CompanyId = x.CompanyId,
             DepartmentId = x.DepartmentId,
             DesignationId = x.DesignationId,
+            CompanyName = x.Company.Name,
+            DepartmentName = x.Department.Name,
+            DesignationName = x.Designation.Name,
             CreatedDate = x.CreatedDate,
             UpdatedDate = x.UpdatedDate,
             IsActive = x.IsActive

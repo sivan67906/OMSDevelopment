@@ -20,21 +20,24 @@ internal class GetBusinessLocationByIdQueryHandler : IRequestHandler<GetBusiness
         return new BusinessLocationDto
         {
             Id = businessLocation.Id,
-            CompanyId = businessLocation.CompanyId,
+            Code = businessLocation.Code,
             Name = businessLocation.Name,
-            Address1 = businessLocation.Address1,
-            Address2 = businessLocation.Address2,
+            CompanyId = businessLocation.CompanyId,
+            AddressId = businessLocation.AddressId,
+            Address1 = businessLocation.Address.Address1,
+            Address2 = businessLocation.Address.Address2,
+            ZipCode = businessLocation.Address.ZipCode,
+            Latitude = businessLocation.Address.Latitude,
+            Longitude = businessLocation.Address.Longitude,
             CountryId = businessLocation.CountryId,
             StateId = businessLocation.StateId,
             CityId = businessLocation.CityId,
-            ZipCode = businessLocation.ZipCode,
+            CountryName = businessLocation.Country.Name,
+            StateName = businessLocation.State.Name,
+            CityName = businessLocation.City.Name,
             TaxName = businessLocation.TaxName,
             TaxNumber = businessLocation.TaxNumber,
-            Latitude = businessLocation.Latitude,
-            Longitude = businessLocation.Longitude,
-            CreatedDate = businessLocation.CreatedDate,
-            UpdatedDate = businessLocation.UpdatedDate,
-            IsActive = businessLocation.IsActive,
+            IsActive = businessLocation.IsActive
         };
     }
 }

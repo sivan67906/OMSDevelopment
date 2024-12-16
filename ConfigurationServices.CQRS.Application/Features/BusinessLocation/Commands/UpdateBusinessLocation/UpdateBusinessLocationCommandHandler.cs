@@ -17,19 +17,16 @@ internal class UpdateBusinessLocationCommandHandler : IRequestHandler<UpdateBusi
         var businessLocation = new BusinessLocation
         {
             Id = request.Id,
-            CompanyId = request.CompanyId,
+            Code = request.Code,
             Name = request.Name,
-            Address1 = request.Address1,
-            Address2 = request.Address2,
+            CompanyId = request.CompanyId,
+            AddressId = request.AddressId,
             CountryId = request.CountryId,
             StateId = request.StateId,
             CityId = request.CityId,
-            ZipCode = request.ZipCode,
             TaxName = request.TaxName,
             TaxNumber = request.TaxNumber,
-            Latitude = request.Latitude,
-            Longitude = request.Longitude,
-            UpdatedDate = DateTime.Now,
+            CreatedDate = DateTime.Now,
             IsActive = request.IsActive
         };
 

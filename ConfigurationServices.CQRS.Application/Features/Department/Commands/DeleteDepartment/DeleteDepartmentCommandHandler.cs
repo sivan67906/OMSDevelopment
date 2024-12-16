@@ -13,17 +13,6 @@ internal class DeleteDepartmentCommandHandler : IRequestHandler<DeleteDepartment
         _departmentRepository = departmentRepository;
     public async Task Handle(DeleteDepartmentCommand request, CancellationToken cancellationToken)
     {
-        var department = new Department
-        {
-            Id = request.Id,
-            Code = request.Code,
-            Name = request.Name,
-            CompanyId = request.CompanyId,
-            Email = request.Email,
-            Description = request.Description,
-            IsActive = request.IsActive
-        };
-
-        //await _departmentRepository.DeleteAsync(department);
+        await _departmentRepository.DeleteAsync(request.Id);
     }
 }

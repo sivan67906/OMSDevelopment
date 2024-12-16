@@ -13,12 +13,7 @@ internal class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryComm
         _categoryRepository = categoryRepository;
     public async Task Handle(DeleteCategoryCommand request, CancellationToken cancellationToken)
     {
-        var category = new Category
-        {
-
-        };
-
-        //await _categoryRepository.DeleteAsync(category);
+        await _categoryRepository.DeleteAsync(request.Id);
     }
 }
 

@@ -31,10 +31,10 @@
 								<th class="d-none">@Html.DisplayNameFor(m => m.Id)</th>
 								<th>Code</th>
 								<th>Name</th>
-								<th>Description</th>
-								<th>CompanyId</th>
-								<th>DepartmentId</th>
-								<th>DesignationId</th>
+								@* <th>Description</th> *@
+								<th>Company</th>
+								<th>Department</th>
+								<th>Designation</th>
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -46,10 +46,10 @@
 									<td class="d-none">@Html.DisplayFor(modelItem => item.Id)</td>
 									<td>@item.Code</td>
 									<td>@item.Name</td>
-									<td>@item.Description</td>
-									<td>@item.CompanyId</td>
-									<td>@item.DepartmentId</td>
-									<td>@item.DesignationId</td>
+									@* <td>@item.Description</td> *@
+									<td>@item.CompanyName</td>
+									<td>@item.DepartmentName</td>
+									<td>@item.DesignationName</td>
 									<td>
 										<button type="button" class="btn btn-de-primary" data-toggle="ajax-modal"
 												data-target="#mdlRoleShow" data-url="@Url.Action($"Edit/{item.Id}")">

@@ -26,6 +26,7 @@ public sealed class Company
 
     [ForeignKey(nameof(CategoryId))]
     public Category? Category { get; set; }
+    public ICollection<BusinessLocation>? BusinessLocations { get; set; }
     public ICollection<Department>? Departments { get; set; }
     public ICollection<Designation>? Designations { get; set; }
     public ICollection<Role>? Roles { get; set; }

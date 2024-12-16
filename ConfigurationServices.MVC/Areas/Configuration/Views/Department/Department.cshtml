@@ -33,7 +33,7 @@
 								<th>Name</th>
 								<th>Company</th>
 								<th>Email</th>
-								<th>Description</th>
+								@* <th>Description</th> *@
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -46,7 +46,7 @@
 									<td>@item.Name</td>
 									<td>@item.CompanyName</td>
 									<td>@item.Email</td>
-									<td>@item.Description</td>
+									@* <td>@item.Description</td> *@
 									<td>
 										<button type="button" class="btn btn-de-primary" data-toggle="ajax-modal"
 												data-target="#mdlDepartmentShow" data-url="@Url.Action($"Edit/{item.Id}")">

@@ -20,20 +20,23 @@ internal class GetAllBusinessLocationsQueryHandler : IRequestHandler<GetAllBusin
         var businessLocationList = companies.Select(x => new BusinessLocationDto
         {
             Id = x.Id,
-            CompanyId = x.CompanyId,
+            Code = x.Code,
             Name = x.Name,
-            Address1 = x.Address1,
-            Address2 = x.Address2,
+            CompanyId = x.CompanyId,
+            AddressId = x.AddressId,
+            Address1 = x.Address.Address1,
+            Address2 = x.Address.Address2,
+            ZipCode = x.Address.ZipCode,
+            Latitude = x.Address.Latitude,
+            Longitude = x.Address.Longitude,
             CountryId = x.CountryId,
             StateId = x.StateId,
             CityId = x.CityId,
-            ZipCode = x.ZipCode,
+            CountryName = x.Country.Name,
+            StateName = x.State.Name,
+            CityName = x.City.Name,
             TaxName = x.TaxName,
             TaxNumber = x.TaxNumber,
-            Latitude = x.Latitude,
-            Longitude = x.Longitude,
-            CreatedDate = x.CreatedDate,
-            UpdatedDate = x.UpdatedDate,
             IsActive = x.IsActive
         }).ToList();
 

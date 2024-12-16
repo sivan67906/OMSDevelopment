@@ -7,10 +7,11 @@
 			</div>
 			<div class="modal-body">
 				<form action="Delete">
+					<input id="txtId" type="hidden" name="Id" value="@Model.Id" />
 					<div class="row mt-3">
 						<div class="col-lg-4">Code <span class="text-danger">*</span></div>
 						<div class="col-lg-4">Name <span class="text-danger">*</span></div>
-						<div class="col-lg-4">CompanyId <span class="text-danger">*</span></div>
+						<div class="col-lg-4">Company <span class="text-danger">*</span></div>
 					</div>
 					<div class="row">
 						<div class="col-lg-4">
@@ -22,23 +23,25 @@
 							<span asp-validation-for="Name" class="text-danger"></span>
 						</div>
 						<div class="col-lg-4">
-							<input id="txtCompanyId" type="text" class="form-control" name="CompanyId" placeholder="enter CompanyId" value="@Model.CompanyId">
-							<span asp-validation-for="CompanyId" class="text-danger"></span>
+							@Html.DropDownListFor(c => c.CompanyId, new SelectList(ViewBag.CompanyList, "Id", "Name"), "--", new { @class = "form-control" })
+							@* <input id="txtCompanyId" type="text" class="form-control" name="CompanyId" placeholder="enter CompanyId" value="@Model.CompanyId">
+							<span asp-validation-for="CompanyId" class="text-danger"></span> *@
 						</div>
 					</div>
 					<div class="row mt-3">
-						<div class="col-lg-4">DepartmentId <span class="text-danger">*</span></div>
+						<div class="col-lg-4">Department <span class="text-danger">*</span></div>
 						<div class="col-lg-4">Description <span class="text-danger">*</span></div>
 						<div class="col-lg-4"> <span class="text-danger">*</span></div>
 					</div>
 
 					<div class="row">
 						<div class="col-lg-4">
-							<input id="txtDepartmentId" type="text" class="form-control" name="DepartmentId" placeholder="enter DepartmentId" value="@Model.DepartmentId">
-							<span asp-validation-for="DepartmentId" class="text-danger"></span>
+							@Html.DropDownListFor(c => c.DepartmentId, new SelectList(ViewBag.DepartmentList, "Id", "Name"), "--", new { @class = "form-control" })
+							@* <input id="txtDepartmentId" type="text" class="form-control" name="DepartmentId" placeholder="enter DepartmentId" value="@Model.DepartmentId">
+							<span asp-validation-for="DepartmentId" class="text-danger"></span> *@
 						</div>
 						<div class="col-lg-4">
-							<input id="txtDescription" type="text" class="form-control" name="Description" placeholder="enter Description" value="@Model.Description">
+							<textarea id="txtDescription" class="form-control" name="Description" placeholder="enter Description">@Model.Description</textarea>
 							<span asp-validation-for="Description" class="text-danger"></span>
 						</div>
 						<div class="col-lg-4">

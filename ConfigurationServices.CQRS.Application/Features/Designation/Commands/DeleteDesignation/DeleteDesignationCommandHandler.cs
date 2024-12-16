@@ -13,18 +13,7 @@ internal class DeleteDesignationCommandHandler : IRequestHandler<DeleteDesignati
         _designationRepository = designationRepository;
     public async Task Handle(DeleteDesignationCommand request, CancellationToken cancellationToken)
     {
-        var designation = new Designation
-        {
-            Id = request.Id,
-            Code = request.Code,
-            Name = request.Name,
-            CompanyId = request.CompanyId,
-            DepartmentId = request.DepartmentId,
-            Description = request.Description,
-            IsActive = request.IsActive
-        };
-
-        //await _designationRepository.DeleteAsync(designation);
+        await _designationRepository.DeleteAsync(request.Id);
     }
 }
 

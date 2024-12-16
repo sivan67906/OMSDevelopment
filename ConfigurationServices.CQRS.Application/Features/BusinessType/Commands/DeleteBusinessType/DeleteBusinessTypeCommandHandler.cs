@@ -13,12 +13,7 @@ internal class DeleteBusinessTypeCommandHandler : IRequestHandler<DeleteBusiness
         _businessTypeRepository = businessTypeRepository;
     public async Task Handle(DeleteBusinessTypeCommand request, CancellationToken cancellationToken)
     {
-        var businessType = new BusinessType
-        {
-
-        };
-
-        //await _businessTypeRepository.DeleteAsync(businessType);
+        await _businessTypeRepository.DeleteAsync(request.Id);
     }
 }
 

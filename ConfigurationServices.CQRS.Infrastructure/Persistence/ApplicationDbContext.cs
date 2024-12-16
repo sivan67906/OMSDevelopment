@@ -18,6 +18,16 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<Company>().Navigation(e => e.BusinessType).AutoInclude();
         modelBuilder.Entity<Company>().Navigation(e => e.Category).AutoInclude();
         modelBuilder.Entity<Department>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<Designation>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<Designation>().Navigation(e => e.Department).AutoInclude();
+        modelBuilder.Entity<Role>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<Role>().Navigation(e => e.Department).AutoInclude();
+        modelBuilder.Entity<Role>().Navigation(e => e.Designation).AutoInclude();
+        modelBuilder.Entity<BusinessLocation>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<BusinessLocation>().Navigation(e => e.Address).AutoInclude();
+        modelBuilder.Entity<BusinessLocation>().Navigation(e => e.Country).AutoInclude();
+        modelBuilder.Entity<BusinessLocation>().Navigation(e => e.State).AutoInclude();
+        modelBuilder.Entity<BusinessLocation>().Navigation(e => e.City).AutoInclude();
     }
     public DbSet<Consumer> Consumers { get; set; }
     public DbSet<PlanType> PlanTypes { get; set; }
@@ -28,11 +38,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Department> Departments { get; set; }
     public DbSet<Designation> Designations { get; set; }
     public DbSet<Role> Roles { get; set; }
-    public DbSet<Location> Locations { get; set; }
-    public DbSet<LocationLevel> LocationLevels { get; set; }
-    public DbSet<AddressDetail> AddressDetails { get; set; }
-    public DbSet<OrganisationType> OrganisationTypes { get; set; }
-    public DbSet<OrganisationHierarchy> OrganisationHierarchies { get; set; }
     public DbSet<LeadAgent> LeadAgents { get; set; }
     public DbSet<LeadCategory> LeadCategories { get; set; }
     public DbSet<Client> clients { get; set; }

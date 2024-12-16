@@ -7,30 +7,32 @@ namespace ConfigurationServices.CQRS.Application.Features.Designations.Queries.G
 
 internal class GetAllDesignationsQueryHandler : IRequestHandler<GetAllDesignationsQuery, IEnumerable<DesignationDto>>
 {
-    private readonly IGenericRepository<Role> _roleRepository;
+    private readonly IGenericRepository<Designation> _designationRepository;
 
     public GetAllDesignationsQueryHandler(
-        IGenericRepository<Role> roleRepository) =>
-        _roleRepository = roleRepository;
+        IGenericRepository<Designation> designationRepository) =>
+        _designationRepository = designationRepository;
 
     public async Task<IEnumerable<DesignationDto>> Handle(GetAllDesignationsQuery request, CancellationToken cancellationToken)
     {
-        var roles = await _roleRepository.GetAllAsync();
+        var designations = await _designationRepository.GetAllAsync();
 
-        var roleList = roles.Select(x => new DesignationDto
+        var designationList = designations.Select(x => new DesignationDto
         {
             Id = x.Id,
             Code = x.Code,
             Name = x.Name,
             CompanyId = x.CompanyId,
             DepartmentId = x.DepartmentId,
+            CompanyName = x.Company.Name,
+            DepartmentName = x.Department.Name,
             Description = x.Description,
             CreatedDate = x.CreatedDate,
             UpdatedDate = x.UpdatedDate,
             IsActive = x.IsActive
         }).ToList();
 
-        return roleList;
+        return designationList;
     }
 }
 

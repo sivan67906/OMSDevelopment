@@ -14,21 +14,6 @@ internal class DeleteCompanyCommandHandler : IRequestHandler<DeleteCompanyComman
         _companyRepository = companyRepository;
     public async Task Handle(DeleteCompanyCommand request, CancellationToken cancellationToken)
     {
-        var company = new Company
-        {
-            Id = request.Id,
-            RegnNumber = request.RegnNumber,
-            Name = request.Name,
-            Email = request.Email,
-            PhoneNumber = request.PhoneNumber,
-            EstablishedYear = request.EstablishedYear,
-            Website = request.Website,
-            BusinessTypeId = request.BusinessTypeId,
-            CategoryId = request.CategoryId,
-            Description = request.Description,
-            IsActive = request.IsActive
-        };
-
-        //await _companyRepository.DeleteAsync(company);
+        await _companyRepository.DeleteAsync(request.Id);
     }
 }

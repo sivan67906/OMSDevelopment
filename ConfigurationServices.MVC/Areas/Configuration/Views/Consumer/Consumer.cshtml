@@ -36,7 +36,7 @@
 								<th>PlanType</th>
 								<th>PhoneNumber</th>
 								<th>Website</th>
-								<th>Description</th>
+								@* <th>Description</th> *@
 								<th>Action</th>
 							</tr>
 						</thead>
@@ -53,7 +53,7 @@
 									<td>@item.PlanTypeName</td>
 									<td>@item.PhoneNumber</td>
 									<td>@item.Website</td>
-									<td>@item.Description</td>
+									@* <td>@item.Description</td> *@
 									<td>
 										<button type="button" class="btn btn-de-primary" data-toggle="ajax-modal"
 												data-target="#mdlConsumerShow" data-url="@Url.Action($"Edit/{item.Id}")">

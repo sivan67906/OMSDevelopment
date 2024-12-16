@@ -13,11 +13,6 @@ internal class DeleteConsumerCommandHandler : IRequestHandler<DeleteConsumerComm
         _consumerRepository = consumerRepository;
     public async Task Handle(DeleteConsumerCommand request, CancellationToken cancellationToken)
     {
-        var consumer = new Consumer
-        {
-            Id = request.Id
-        };
-
-        //await _consumerRepository.DeleteAsync(consumer);
+        await _consumerRepository.DeleteAsync(request.Id);
     }
 }

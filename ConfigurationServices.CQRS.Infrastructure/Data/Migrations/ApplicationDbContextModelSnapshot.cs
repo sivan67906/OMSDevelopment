@@ -67,81 +67,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.ToTable("Addresses");
                 });
 
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.AddressDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Address1")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("City")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Country")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("District")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Effective_From")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("Effective_To")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsPrimary")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("Isactive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Landmark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Latitude")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LocationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Longitude")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Modified_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Pincode")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Region")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("State")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TypeLOVId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocationId");
-
-                    b.ToTable("AddressDetails");
-                });
-
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.BusinessLocation", b =>
                 {
                     b.Property<int>("Id")
@@ -150,16 +75,15 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Address1")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<int>("CityId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("CompanyId")
                         .HasColumnType("int");
@@ -172,14 +96,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
-
-                    b.Property<string>("Latitude")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Longitude")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -199,11 +115,17 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ZipCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("CityId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("CountryId");
+
+                    b.HasIndex("StateId");
 
                     b.ToTable("BusinessLocations");
                 });
@@ -648,147 +570,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.ToTable("LeadStatus");
                 });
 
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Location", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Isactive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Latitude")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("LocationLevelId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Longitude")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("Modified_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Parent_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("LocationLevelId");
-
-                    b.ToTable("Locations");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LocationLevel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Created_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("Isactive")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("Modified_Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Parent_Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LocationLevels");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.OrganisationHierarchy", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("OrganisationTypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrganisationTypeId");
-
-                    b.ToTable("OrganisationHierarchies");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.OrganisationType", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("OrganisationTypes");
-                });
-
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.PlanType", b =>
                 {
                     b.Property<int>("Id")
@@ -913,13 +694,47 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.Navigation("City");
                 });
 
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.AddressDetail", b =>
+            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.BusinessLocation", b =>
                 {
-                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.Location", "Location")
-                        .WithMany("AddressDetails")
-                        .HasForeignKey("LocationId");
+                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Location");
+                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.Company", "Company")
+                        .WithMany("BusinessLocations")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.Country", "Country")
+                        .WithMany()
+                        .HasForeignKey("CountryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.State", "State")
+                        .WithMany()
+                        .HasForeignKey("StateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("City");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Country");
+
+                    b.Navigation("State");
                 });
 
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.City", b =>
@@ -993,26 +808,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Location", b =>
-                {
-                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.LocationLevel", "locationLevel")
-                        .WithMany("Locations")
-                        .HasForeignKey("LocationLevelId");
-
-                    b.Navigation("locationLevel");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.OrganisationHierarchy", b =>
-                {
-                    b.HasOne("ConfigurationServices.CQRS.Domain.Entities.OrganisationType", "OrganisationType")
-                        .WithMany("OrganisationHierarchies")
-                        .HasForeignKey("OrganisationTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("OrganisationType");
-                });
-
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Role", b =>
                 {
                     b.HasOne("ConfigurationServices.CQRS.Domain.Entities.Company", "Company")
@@ -1063,6 +858,8 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Company", b =>
                 {
+                    b.Navigation("BusinessLocations");
+
                     b.Navigation("Departments");
 
                     b.Navigation("Designations");
@@ -1085,21 +882,6 @@ namespace ConfigurationServices.CQRS.Infrastructure.Data.Migrations
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Designation", b =>
                 {
                     b.Navigation("Roles");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.Location", b =>
-                {
-                    b.Navigation("AddressDetails");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.LocationLevel", b =>
-                {
-                    b.Navigation("Locations");
-                });
-
-            modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.OrganisationType", b =>
-                {
-                    b.Navigation("OrganisationHierarchies");
                 });
 
             modelBuilder.Entity("ConfigurationServices.CQRS.Domain.Entities.PlanType", b =>

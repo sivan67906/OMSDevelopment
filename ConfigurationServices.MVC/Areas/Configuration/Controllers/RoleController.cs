@@ -34,6 +34,13 @@ public class RoleController : Controller
     public async Task<IActionResult> Create()
     {
         RoleVM role = new();
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
+        var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
+        var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
+        var designations = await client.GetFromJsonAsync<List<DesignationVM>>("Designation/GetAll");
+        ViewBag.CompanyList = companies;
+        ViewBag.DepartmentList = departments;
+        ViewBag.DesignationList = designations;
         return PartialView("_Create", role);
     }
 
@@ -42,7 +49,7 @@ public class RoleController : Controller
     {
         var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PostAsJsonAsync<RoleVM>("Role/Create", role);
-        return RedirectToAction("Index");
+        return RedirectToAction("Role");
     }
 
     [HttpGet]
@@ -50,6 +57,12 @@ public class RoleController : Controller
     {
         if (Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
+        var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
+        var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
+        var designations = await client.GetFromJsonAsync<List<DesignationVM>>("Designation/GetAll");
+        ViewBag.CompanyList = companies;
+        ViewBag.DepartmentList = departments;
+        ViewBag.DesignationList = designations;
         var role = await client.GetFromJsonAsync<RoleVM>("Role/GetById/?Id=" + Id);
         return PartialView("_Edit", role);
     }
@@ -60,7 +73,7 @@ public class RoleController : Controller
         if (role.Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
         await client.PutAsJsonAsync<RoleVM>("Role/Update/", role);
-        return RedirectToAction("Index");
+        return RedirectToAction("Role");
     }
 
     [HttpGet]
@@ -68,6 +81,12 @@ public class RoleController : Controller
     {
         if (Id == 0) return View();
         var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
+        var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
+        var departments = await client.GetFromJsonAsync<List<DepartmentVM>>("Department/GetAll");
+        var designations = await client.GetFromJsonAsync<List<DesignationVM>>("Designation/GetAll");
+        ViewBag.CompanyList = companies;
+        ViewBag.DepartmentList = departments;
+        ViewBag.DesignationList = designations;
         var role = await client.GetFromJsonAsync<RoleVM>("Role/GetById/?Id=" + Id);
         return PartialView("_Delete", role);
     }
@@ -93,7 +112,7 @@ public class RoleController : Controller
     //    if (role.Id == 0) return View();
     //    var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
     //    var roleList = Deletewithresponse(client.BaseAddress.AbsoluteUri + "Role/Delete", role);
-    //    return RedirectToAction("Index");
+    //    return RedirectToAction("Role");
     //}
 
     //public async Task<HttpResponseMessage> Deletewithresponse(string url, object entity)

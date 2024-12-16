@@ -34,8 +34,16 @@ public class BusinessLocationController : Controller
     public async Task<IActionResult> Create()
     {
         BusinessLocationVM businessLocation = new();
+        var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
+        var companies = await client.GetFromJsonAsync<List<CompanyVM>>("Company/GetAll");
+        var addresses = await client.GetFromJsonAsync<List<CompanyVM>>("Address/GetAll");
+        var countries = await client.GetFromJsonAsync<List<CompanyVM>>("Country/GetAll");
+        ViewBag.CompanyList = companies;
+        ViewBag.AddressList = addresses;
+        ViewBag.CountryList = countries;
         return PartialView("_Create", businessLocation);
     }
+
 
     [HttpPost]
     public async Task<IActionResult> Create(BusinessLocationVM businessLocation)
