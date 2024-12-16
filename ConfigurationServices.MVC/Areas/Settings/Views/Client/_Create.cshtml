@@ -3,10 +3,10 @@
 	<div class="modal-dialog modal-xl">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title mt-0" id="">Lead Agent Setup</h5>
+				<h5 class="modal-title mt-0" id="">Client Setup</h5>
 			</div>
 			<div class="modal-body">
-				<form action="Create">
+				<form action="Create" method="post">
 					
                     <div class="row">
                         <div class="col-lg-4 g-2">
@@ -45,13 +45,15 @@
                                 <label for="example-text-input">
                                     Company Name <span class="f-14 mr-1 text-danger">*</span>
                                 </label>
-                                <select class="form-select mt-2" aria-label="Default select example" name="CompanyName">
+                                @Html.DropDownListFor(c => c.CompanyId, new SelectList(ViewBag.CompanyNames, "Id", "Name"), "--", new { @class = "form-control" })
+
+                               @*  <select class="form-select mt-2" aria-label="Default select example" name="CompanyName">
                                     <option value="" selected>--</option>
                                     <option value="1">Meta</option>
                                     <option value="2">Apple</option>
                                     <option value="3">Microsoft</option>
                                 </select>
-                                <span asp-validation-for="CompanyName" class="text-danger"></span>
+                                <span asp-validation-for="CompanyName" class="text-danger"></span> *@
                             </div>
                         </div>
                         <div class="col-lg-6 g-2">
@@ -96,14 +98,16 @@
                                 <label for="example-text-input">
                                     Country
                                 </label>
-                                <select id="countryDropdown" class="form-select mt-2" name="Country">
+                                @Html.DropDownListFor(c => c.CountryId, new SelectList(ViewBag.Countries, "Id", "Name"), "--", new { @class = "form-control" })
+
+                                @* <select id="countryDropdown" class="form-select mt-2" name="Country">
                                     <option selected>--</option>
                                     <option>USA</option>
                                     <option>Canada</option>
                                     <option>UK</option>
                                     <option>Australia</option>
                                 </select>
-                                <span asp-validation-for="Country"  class="text-danger"></span>
+                                <span asp-validation-for="Country"  class="text-danger"></span> *@
                             </div>
                         </div>
                         <div class="col-lg-3 g-2">
@@ -111,14 +115,16 @@
                                 <label for="tax">
                                     State
                                 </label>
-                                <select id="countryDropdown" class="form-select mt-2" name="State">
+                                @Html.DropDownListFor(c => c.StateId, new SelectList(ViewBag.States, "Id", "Name"), "--", new { @class = "form-control" })
+
+                               @*  <select id="countryDropdown" class="form-select mt-2" name="State">
                                     <option selected>--</option>
                                     <option>California</option>
                                     <option>Texas</option>
                                     <option>Ontario</option>
                                     <option>Grater Landon</option>
                                 </select>
-                                <span asp-validation-for="State" class="text-danger"></span>
+                                <span asp-validation-for="State" class="text-danger"></span> *@
                             </div>
                         </div>
                         <div class="col-lg-3 g-2">
@@ -126,7 +132,9 @@
                                 <label for="tax">
                                     City
                                 </label>
-                                <select id="countryDropdown"name="City" class="form-select mt-2">
+                                @Html.DropDownListFor(c => c.CityId, new SelectList(ViewBag.Cities, "Id", "Name"), "--", new { @class = "form-control" })
+
+                               @*  <select id="countryDropdown"name="City" class="form-select mt-2">
                                     <option selected>--</option>
                                     <option>Los Angeles</option>
                                     <option>Austin</option>
@@ -134,7 +142,7 @@
                                     <option>London</option>
                                     <option>Sydney</option>
                                 </select>
-                                <span asp-validation-for="City" class="text-danger"></span>
+                                <span asp-validation-for="City" class="text-danger"></span> *@
                             </div>
                         </div>
                         <div class="col-lg-3 g-2">

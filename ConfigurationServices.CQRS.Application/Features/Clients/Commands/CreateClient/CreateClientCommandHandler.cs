@@ -17,16 +17,17 @@ namespace ConfigurationServices.CQRS.Application.Feauters.Clients.Commands.Creat
                 ClientCode = request.ClientCode,
                 Description = request.Description,
                 Email = request.Email,
-                CompanyName = request.CompanyName,
+                CompanyId = request.CompanyId,
                 PhoneNumber = request.PhoneNumber,
-                Address1 = request.Address1,
-                Address2 = request.Address2,
-                Country = request.Country,
-                State = request.State,
-                City = request.City,
-                ZipCode = request.ZipCode
-            };
-
+               
+                    Address1 = request.Address1,
+                    Address2 = request.Address2,
+                
+                CountryId = request.CountryId,
+                StateId = request.StateId,
+                CityId = request.CityId,
+                ZipCode = request.ZipCode,
+            };  
             await _repository.CreateAsync(client);
             return client.Id;
         }

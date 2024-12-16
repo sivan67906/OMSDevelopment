@@ -21,13 +21,13 @@ namespace ConfigurationServices.CQRS.Application.Feauters.Clients.Queries.GetCli
                 ClientCode = client.ClientCode,
                 Description = client.Description,
                 Email = client.Email,
-                CompanyName = client.CompanyName,
+                CompanyId = client.CompanyId,
                 PhoneNumber = client.PhoneNumber,
                 Address1 = client.Address1,
                 Address2 = client.Address2,
-                Country = client.Country,
-                State = client.State,
-                City = client.City,
+                CountryId = client.CountryId,
+                StateId = client.StateId,
+                CityId = client.CityId,
                 ZipCode = client.ZipCode
             };
         }

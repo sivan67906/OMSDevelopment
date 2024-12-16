@@ -1,4 +1,6 @@
-﻿using ConfigurationServices.MVC.Areas.Settings.ViewModels;
+﻿using ConfigurationServices.CQRS.Application.DTOs;
+using ConfigurationServices.MVC.Areas.Configuration.ViewModels;
+using ConfigurationServices.MVC.Areas.Settings.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ConfigurationServices.MVC.Areas.Settings.Controllers
@@ -14,6 +16,14 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         }
         public async Task<IActionResult> Client(string searchQuery = null)
         {
+            // Page Title
+            ViewData["pTitle"] = "Client Profile";
+
+            // Breadcrumb
+            ViewData["bGParent"] = "Settings";
+            ViewData["bParent"] = "Client";
+            ViewData["bChild"] = "Client View";
+
             var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
             //var productList = await client.GetFromJsonAsync<List<ProductVM>>("Product/GetAll");
 
@@ -37,6 +47,11 @@ namespace ConfigurationServices.MVC.Areas.Settings.Controllers
         public async Task<IActionResult> Create()
         {
             ClientVM product = new();
+            var client = _httpClientFactory.CreateClient("ConfigServicesApiCall");
+            ViewBag.Companies = await client.GetFromJsonAsync<List<Areas.Settings.ViewModels.CompanyVM>>("Company/GetAll");
+            ViewBag.Countries = await client.GetFromJsonAsync<List<CountryVM>>("Country/GetAll");
+            ViewBag.States = await client.GetFromJsonAsync<List<StateVM>>("State/GetAll");
+            ViewBag.Cities = await client.GetFromJsonAsync<List<CityVM>>("City/GetAll");
             return PartialView("_Create", product);
         }
 

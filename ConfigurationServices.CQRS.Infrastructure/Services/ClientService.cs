@@ -41,7 +41,7 @@ namespace ConfigurationServices.CQRS.Infrastructure.Services
             existingProduct.Description = client.Description;
             existingProduct.Email = client.Email;
             existingProduct.PhoneNumber = client.PhoneNumber;
-            existingProduct.CompanyName = client.CompanyName;
+            existingProduct.CompanyId = client.CompanyId;
             existingProduct.Address1 = client.Address1;
             existingProduct.Address2 = client.Address2;
             existingProduct.Country = client.Country;

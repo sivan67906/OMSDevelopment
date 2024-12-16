@@ -18,6 +18,10 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
         modelBuilder.Entity<Company>().Navigation(e => e.BusinessType).AutoInclude();
         modelBuilder.Entity<Company>().Navigation(e => e.Category).AutoInclude();
         modelBuilder.Entity<Department>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<Client>().Navigation(e => e.Company).AutoInclude();
+        modelBuilder.Entity<Client>().Navigation(e => e.Country).AutoInclude();
+        modelBuilder.Entity<Client>().Navigation(e => e.State).AutoInclude();
+        modelBuilder.Entity<Client>().Navigation(e => e.City).AutoInclude();
     }
     public DbSet<Consumer> Consumers { get; set; }
     public DbSet<PlanType> PlanTypes { get; set; }

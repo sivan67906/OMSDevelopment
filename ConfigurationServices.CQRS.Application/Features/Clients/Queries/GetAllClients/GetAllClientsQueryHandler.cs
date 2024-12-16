@@ -21,14 +21,14 @@ namespace ConfigurationServices.CQRS.Application.Feauters.Clients.Queries.GetAll
                 ClientCode = x.ClientCode,
                 Description = x.Description,
                 Email = x.Email,
-                CompanyName = x.CompanyName,
+                CompanyId = x.CompanyId,
                 PhoneNumber = x.PhoneNumber,
-                Address1 = x.Address1,
-                Address2 = x.Address2,
-                Country = x.Country,
-                State = x.State,
-                City = x.City,
-                ZipCode = x.ZipCode
+                Address1 = request.Address1,
+                Address2 = request.Address2,
+                CountryId = x.CountryId,
+                StateId = x.StateId,
+                CityId = x.CityId,
+                ZipCode = x.ZipCode,
             }).ToList();
 
             return clientlist;
